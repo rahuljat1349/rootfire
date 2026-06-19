@@ -35,7 +35,7 @@
           <h3 class="hub__scene-title">{{ activeScene.title }}</h3>
 
           <!-- Scene 1: All evidence converges -->
-          <div v-if="activeScene.id === 'ingest'" class="hub__orbit" aria-hidden="true">
+          <div v-if="activeScene.id === 'preserve'" class="hub__orbit" aria-hidden="true">
             <div class="hub__core">
               <span class="hub__core-ring hub__core-ring--1" />
               <span class="hub__core-ring hub__core-ring--2" />
@@ -59,7 +59,7 @@
           </div>
 
           <!-- Scene 2: Local processing -->
-          <div v-else-if="activeScene.id === 'local'" class="hub__local" aria-hidden="true">
+          <div v-else-if="activeScene.id === 'extract'" class="hub__local" aria-hidden="true">
             <div class="hub__server">
               <div class="hub__server-rack">
                 <span v-for="n in 4" :key="n" class="hub__server-slot" :style="{ '--i': n }" />
@@ -99,7 +99,7 @@
             <article class="hub__output hub__output--doc">
               <span class="hub__output-tag">Documents</span>
               <p class="hub__output-headline">"Named on p. 12"</p>
-              <p class="hub__output-detail">Chargesheet FIR-4821 cited</p>
+              <p class="hub__output-detail">FIR-4821 cited with metadata</p>
             </article>
             <article class="hub__output hub__output--graph">
               <span class="hub__output-tag">Intelligence</span>
@@ -143,32 +143,32 @@ import { PRODUCT_NAME } from '@/config.js'
 
 const scenes = [
   {
-    id: 'ingest',
+    id: 'preserve',
     label: 'Step 1',
-    title: 'Every evidence type, one intake',
-    tagline: 'Face, prints, video, disk images, chargesheets — no tool switching.',
+    title: 'Preserve evidence with proof',
+    tagline: 'Forensic copy and SHA-256 hash first — then Volume acquires disk, mobile, and memory.',
   },
   {
-    id: 'local',
+    id: 'extract',
     label: 'Step 2',
-    title: 'Analysis stays inside your building',
-    tagline: 'Biometrics, search, and Lens run on infrastructure you control.',
+    title: 'Extract from every source',
+    tagline: 'Prism, Documents, EDR, IPDR — every engine runs on your infrastructure.',
   },
   {
-    id: 'intel',
+    id: 'correlate',
     label: 'Step 3',
-    title: 'Intelligence your team can act on',
-    tagline: 'Matches, cited document answers, and Molecules networks — with proof.',
+    title: 'Correlate the evidence graph',
+    tagline: 'Molecules connects people, devices, and communications. Lens answers across it all.',
   },
 ]
 
 const evidenceNodes = [
-  { icon: 'recognize', label: 'Face' },
-  { icon: 'fingerprint', label: 'Prints' },
-  { icon: 'audio', label: 'Voice' },
-  { icon: 'document', label: 'Documents' },
-  { icon: 'video', label: 'Video' },
-  { icon: 'disk', label: 'Disk' },
+  { icon: 'coc', label: 'CoC' },
+  { icon: 'disk', label: 'Volume' },
+  { icon: 'prism', label: 'Prism' },
+  { icon: 'document', label: 'Docs' },
+  { icon: 'edr', label: 'EDR' },
+  { icon: 'graph', label: 'Molecules' },
 ]
 
 const sceneIndex = ref(0)

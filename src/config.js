@@ -1,10 +1,12 @@
 /** Brand & site config */
 export const PRODUCT_NAME = 'Obsedian Forensics'
 export const PRODUCT_SHORT = 'Obsedian'
+export const PRODUCT_TAGLINE = 'The forensic operating system for end-to-end investigations'
 export const LENS_NAME = 'Obsedian Lens'
 export const MOLECULES_NAME = 'Obsedian Molecules'
 export const PRISM_NAME = 'Obsedian Prism'
 export const IRIS_NAME = 'Obsedian Iris'
+export const VOLUME_NAME = 'Obsedian Volume'
 
 /** Placeholder demo URL — set to live app when available */
 export const DEMO_URL = '#'

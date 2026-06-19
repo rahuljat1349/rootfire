@@ -67,10 +67,10 @@ import { PRODUCT_NAME } from '@/config.js'
 defineProps({
   sectionId: { type: String, default: 'capabilities' },
   bare: { type: Boolean, default: false },
-  title: { type: String, default: 'Everything your team needs — in one place' },
+  title: { type: String, default: 'A full forensic operating system' },
   subtitle: {
     type: String,
-    default: `No more switching between six different tools. ${PRODUCT_NAME} covers identification, footage analysis, document search, and intelligence — unified under one roof. Each feature below shows how it works in three simple steps.`,
+    default: `${PRODUCT_NAME} preserves, acquires, analyzes, and correlates evidence — from hash-first chain of custody through Molecules and Lens. Every module below shows how it works in three steps.`,
   },
 })
 

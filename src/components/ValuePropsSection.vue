@@ -4,8 +4,8 @@
       <div class="value-props__header reveal">
         <h2 class="section-title">Why teams switch to {{ PRODUCT_NAME }}</h2>
         <p class="section-subtitle">
-          Not another point solution. One platform that makes your investigators faster,
-          your lawyers comfortable, and your leadership impressed.
+          A full forensic operating system — hash-first chain of custody, every evidence type,
+          and the Molecules correlation graph built in.
         </p>
       </div>
 

@@ -51,6 +51,7 @@ const navItems = [
   { name: 'home', label: 'Home', to: '/', hash: '#hero' },
   { name: 'capabilities', label: 'What it does', to: '/capabilities', hash: '#capabilities' },
   { name: 'features', label: 'Features', to: '/features' },
+  { name: 'coverage', label: 'Coverage', to: '/coverage' },
   { name: 'architecture', label: 'How it works', to: '/architecture', hash: '#architecture' },
   { name: 'security', label: 'Trust', to: '/security', hash: '#security' },
   { name: 'demo', label: 'Live demo', to: '/demo', hash: '#demo' },

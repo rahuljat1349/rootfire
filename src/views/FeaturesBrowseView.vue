@@ -3,10 +3,10 @@
     <div class="container">
       <CapabilitiesLayout>
         <header class="features-browse__header reveal">
-          <h1 class="features-browse__title">All capabilities</h1>
+          <h1 class="features-browse__title">Forensic OS modules</h1>
           <p class="features-browse__subtitle">
-            Every feature in one scrollable guide. Use the menu to jump between capabilities,
-            or open any feature on its own page.
+            Every module in the Obsedian forensic operating system — preserve, acquire, analyze, and correlate.
+            Use the menu to jump between capabilities.
           </p>
         </header>
 

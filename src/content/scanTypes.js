@@ -1,46 +1,103 @@
 export const SCAN_CATEGORIES = {
+  foundation: 'Preserve and acquire',
   biometric: 'Identify people',
-  media: 'Analyze footage & images',
+  media: 'Analyze footage and images',
+  dfir: 'Threat and DFIR',
   document: 'Search case files',
   intelligence: 'Connect the dots',
 }
 
-export const SCAN_CATEGORY_ORDER = ['biometric', 'media', 'document', 'intelligence']
+export const SCAN_CATEGORY_ORDER = [
+  'foundation',
+  'biometric',
+  'media',
+  'dfir',
+  'document',
+  'intelligence',
+]
 
 export const SCAN_CATEGORY_TAGLINES = {
-  biometric: 'From a single photo to a positive ID — in seconds.',
-  media: 'Turn hours of video into a timeline your team can actually use.',
-  document: 'Find the needle in the PDF stack — with page citations.',
-  intelligence: 'See who knows who, before your suspect disappears.',
+  foundation:
+    'Forensic copy, hash verification, and acquisition — before a single byte is analyzed.',
+  biometric:
+    'From a single photo to a positive ID — enroll, verify, search, and profile.',
+  media:
+    'Turn hours of video and bulk evidence into timelines and searchable artifacts.',
+  dfir:
+    'Endpoint, network, and memory forensics for threat hunters and DFIR teams.',
+  document:
+    'Every document type indexed — search by meaning with page citations.',
+  intelligence:
+    'Correlate everything. Ask anything. See networks spreadsheets cannot show.',
 }
 
+/** Volume hub — related foundation tools shown on detail page */
+export const VOLUME_HUB_TOOLS = ['coc', 'ram-dump', 'raw-organizer']
+
 export const SCAN_TYPES = [
+  // Layer 1 — Forensic OS foundation
+  {
+    id: 'coc',
+    label: 'Chain of Custody',
+    description:
+      'Forensic copy and cryptographic hashing first — prove evidence was never altered before analysis begins.',
+    icon: 'coc',
+    animation: 'coc',
+    category: 'foundation',
+    outcome: 'Hash-verified copies',
+  },
+  {
+    id: 'volume',
+    label: 'Obsedian Volume',
+    description:
+      'Disk and mobile acquisition hub — mount images, catalog files, extract calls, apps, and artifacts. Copy + hash before analysis.',
+    icon: 'disk',
+    animation: 'disk',
+    category: 'foundation',
+    beta: true,
+    outcome: 'Full media forensics',
+  },
+  {
+    id: 'ram-dump',
+    label: 'RAM Dumper',
+    description:
+      'Capture volatile memory — running processes, injected code, network sessions, encryption keys, and malware indicators.',
+    icon: 'ram',
+    animation: 'ram',
+    category: 'foundation',
+    beta: true,
+    outcome: 'Volatile memory capture',
+  },
+  {
+    id: 'raw-organizer',
+    label: 'Raw Organizer',
+    description:
+      'Structure unstructured raw dumps into parsed entities — then link findings into Obsedian Molecules.',
+    icon: 'raw',
+    animation: 'raw',
+    category: 'foundation',
+    outcome: 'Structure raw evidence',
+  },
+  // Layer 2 — Analysis engines
   {
     id: 'prism',
     label: 'Obsedian Prism',
-    description: 'Enroll, verify, and search faces in one workflow — build your index, run 1:1 checks, and 1:N identification on the same subject records.',
+    description:
+      'Enroll, verify, and search faces — plus index moles, scars, and landmarks on every subject record.',
     icon: 'prism',
     animation: 'prism',
     category: 'biometric',
     outcome: 'Enroll · verify · search',
   },
   {
-    id: 'live-id',
-    label: 'Live identification',
-    description: 'Point a camera at a crowd or checkpoint and get real-time alerts when a known subject appears.',
-    icon: 'live',
-    animation: 'live',
+    id: 'iris',
+    label: 'Obsedian Iris',
+    description:
+      'Enroll, verify, and search iris scans in one workflow — enrollment, 1:1 checks, and 1:N identification on the same subject record.',
+    icon: 'iris',
+    animation: 'iris',
     category: 'biometric',
-    outcome: 'Field-ready matching',
-  },
-  {
-    id: 'face-analyze',
-    label: 'Photo analysis',
-    description: 'Extract age range, demographics, and attributes from evidence photos to narrow your search.',
-    icon: 'analyze',
-    animation: 'analyze',
-    category: 'biometric',
-    outcome: 'Profile from a photo',
+    outcome: 'Enroll · verify · search',
   },
   {
     id: 'fingerprint',
@@ -52,56 +109,96 @@ export const SCAN_TYPES = [
     outcome: 'Second biometric layer',
   },
   {
-    id: 'iris',
-    label: 'Obsedian Iris',
-    description: 'Enroll, verify, and search iris scans in one workflow — enrollment, 1:1 checks, and 1:N identification on the same subject record.',
-    icon: 'iris',
-    animation: 'iris',
-    category: 'biometric',
-    outcome: 'Enroll · verify · search',
-  },
-  {
     id: 'voice',
     label: 'Voice analysis',
-    description: 'Identify speakers in recordings, match voices to enrolled subjects, and search audio evidence.',
+    description:
+      'Diarize multiple speakers, group voices, match to enrolled subjects, and surface relations through Molecules.',
     icon: 'audio',
     animation: 'audio',
     category: 'biometric',
     beta: true,
-    outcome: 'Match by voice',
+    outcome: 'Multi-speaker intelligence',
+  },
+  {
+    id: 'live-id',
+    label: 'Live identification',
+    description:
+      'Connect any CCTV or remote camera — detect and match faces, objects, and entities in every frame in real time.',
+    icon: 'live',
+    animation: 'live',
+    category: 'biometric',
+    outcome: 'Live multi-object matching',
+  },
+  {
+    id: 'face-analyze',
+    label: 'Photo analysis',
+    description:
+      'EXIF, GPS, PRNU sensor fingerprint, editing traces, OCR, embeddings, and deepfake indicators from any image.',
+    icon: 'analyze',
+    animation: 'analyze',
+    category: 'biometric',
+    outcome: 'Full image artifacts',
   },
   {
     id: 'video',
     label: 'Video processing',
-    description: 'Upload footage and get a searchable timeline of every face detected — frame by frame.',
+    description:
+      'Detect every face and object in footage — match against your database and build a searchable timeline.',
     icon: 'video',
     animation: 'video',
     category: 'media',
-    outcome: 'Timeline from footage',
+    outcome: 'Faces and objects',
   },
   {
     id: 'batch-detection',
-    label: 'Batch detection',
-    description: 'Process dozens of images at once. Know exactly how many faces appear in each file.',
+    label: 'Batch ingestion',
+    description:
+      'Upload mixed evidence types in bulk — images, documents, dumps, and more — and let the platform triage automatically.',
     icon: 'batch',
     animation: 'batch',
     category: 'media',
-    outcome: 'Bulk image screening',
+    outcome: 'Multi-type bulk pipeline',
   },
+  // Layer 3 — DFIR
   {
-    id: 'disk-analysis',
-    label: 'Disk analysis',
-    description: 'Mount seized drives and disk images, catalog every file, and surface the evidence that matters — locally.',
-    icon: 'disk',
-    animation: 'disk',
-    category: 'media',
+    id: 'edr',
+    label: 'EDR forensics',
+    description:
+      'Endpoint detection and response artifacts — process creation, execution traces, and threat indicators from endpoints.',
+    icon: 'edr',
+    animation: 'edr',
+    category: 'dfir',
     beta: true,
-    outcome: 'Forensics from seized media',
+    outcome: 'Endpoint threat intel',
   },
   {
-    id: 'chargesheet',
-    label: 'Chargesheets',
-    description: 'Upload investigation PDFs and search them by meaning — not just keywords. Every answer cites the page.',
+    id: 'ipdr',
+    label: 'IPDR forensics',
+    description:
+      'IP detail records and network session analysis — DNS, connections, VPN usage, and communication patterns.',
+    icon: 'ipdr',
+    animation: 'ipdr',
+    category: 'dfir',
+    beta: true,
+    outcome: 'Network forensics',
+  },
+  {
+    id: 'rootkit',
+    label: 'Rootkit and fileless',
+    description:
+      'Detect hidden processes, injected code, and fileless malware — correlating memory and disk indicators for DFIR teams.',
+    icon: 'rootkit',
+    animation: 'rootkit',
+    category: 'dfir',
+    beta: true,
+    outcome: 'Stealth threat detection',
+  },
+  // Layer 4 — Documents
+  {
+    id: 'documents',
+    label: 'Documents',
+    description:
+      'Upload Word, PDF, Excel, PowerPoint, and text files — search by meaning with author metadata and page citations.',
     icon: 'document',
     animation: 'document',
     category: 'document',
@@ -118,10 +215,12 @@ export const SCAN_TYPES = [
     beta: true,
     outcome: 'Instant ID verification',
   },
+  // Layer 5 — Intelligence
   {
     id: 'lens',
     label: 'Obsedian Lens',
-    description: 'Ask across photos, video, audio, documents, subjects, and detected objects — in plain English, with cited answers you can verify.',
+    description:
+      'Ask across photos, video, audio, documents, subjects, and detected objects — in plain English, with cited answers you can verify.',
     icon: 'lens',
     animation: 'lens',
     category: 'intelligence',
@@ -131,12 +230,13 @@ export const SCAN_TYPES = [
   {
     id: 'molecules',
     label: 'Obsedian Molecules',
-    description: 'See how subjects, documents, and captures link together — co-appearances, shared cases, hidden networks.',
+    description:
+      'The correlation engine — entity, communication, timeline, device, and movement graphs from every evidence source.',
     icon: 'graph',
     animation: 'graph',
     category: 'intelligence',
     beta: true,
-    outcome: 'Visualize networks',
+    outcome: 'Evidence graph',
   },
 ]
 
@@ -147,5 +247,10 @@ export function getFeatureById(id) {
 export function getRelatedFeatures(id, limit = 3) {
   const feature = getFeatureById(id)
   if (!feature) return []
+
+  if (id === 'volume') {
+    return VOLUME_HUB_TOOLS.map((hubId) => getFeatureById(hubId)).filter(Boolean)
+  }
+
   return SCAN_TYPES.filter((f) => f.category === feature.category && f.id !== id).slice(0, limit)
 }

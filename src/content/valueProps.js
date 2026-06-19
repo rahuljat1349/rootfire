@@ -1,32 +1,32 @@
 export const VALUE_PROPS = [
   {
-    id: 'speed',
-    title: 'Answers in minutes, not days',
-    headline: 'Stop waiting on backlogs',
+    id: 'integrity',
+    title: 'Hash-first chain of custody',
+    headline: 'Prove evidence was never altered',
     description:
-      'Upload a photo, a chargesheet, or hours of footage — and get matches, links, and cited answers while your team is still in the room.',
-    icon: 'speed',
-    stat: '< 3 min',
-    statLabel: 'to first match',
+      'Every acquisition starts with a forensic copy and cryptographic hash. Chain of Custody is built into the OS — not bolted on after the fact.',
+    icon: 'audit',
+    stat: 'SHA-256',
+    statLabel: 'hash at ingest',
   },
   {
     id: 'control',
     title: 'Your evidence never leaves the building',
-    headline: 'Zero cloud uploads',
+    headline: 'Full forensic OS on your hardware',
     description:
-      'Every search, every file, every biometric runs on hardware you control. Perfect for agencies with strict data-handling rules.',
+      'Disk, mobile, memory, network, biometrics, and documents — every module runs on infrastructure you control. Zero cloud uploads.',
     icon: 'shield',
     stat: '100%',
     statLabel: 'on your servers',
   },
   {
-    id: 'proof',
-    title: 'Every answer comes with proof',
-    headline: 'Court-ready from day one',
+    id: 'correlate',
+    title: 'The evidence graph',
+    headline: 'See connections spreadsheets cannot',
     description:
-      'Cited document passages, logged searches, and audit trails — so leadership and legal can stand behind every finding.',
-    icon: 'audit',
-    stat: 'Full',
-    statLabel: 'audit trail',
+      'Molecules correlates subjects, communications, devices, and timelines from every module. Lens answers questions across the full graph.',
+    icon: 'speed',
+    stat: '21+',
+    statLabel: 'evidence categories',
   },
 ]

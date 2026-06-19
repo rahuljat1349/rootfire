@@ -556,6 +556,156 @@
       </template>
     </div>
 
+    <!-- Chain of Custody -->
+    <div v-else-if="type === 'coc'" class="anim anim-coc">
+      <template v-if="phase === 1">
+        <div class="anim-coc__drive" />
+        <span class="anim-step-label">Source</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-coc__copy">
+          <div class="anim-coc__drive anim-coc__drive--sm" />
+          <span class="anim-coc__arrow">→</span>
+          <div class="anim-coc__drive anim-coc__drive--sm anim-coc__drive--copy" />
+        </div>
+        <span class="anim-step-label">Forensic copy</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-coc__hash">SHA-256</div>
+        <div class="anim-coc__hash-val">a3f8…9c2e</div>
+        <span class="anim-step-label">Verified</span>
+      </template>
+      <template v-else>
+        <div class="anim-coc__hash">SHA-256 ✓</div>
+      </template>
+    </div>
+
+    <!-- RAM Dumper -->
+    <div v-else-if="type === 'ram'" class="anim anim-ram">
+      <template v-if="phase === 1">
+        <div class="anim-ram__chip">
+          <span v-for="n in 6" :key="n" class="anim-ram__cell" />
+        </div>
+        <span class="anim-step-label">Capturing</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-ram__processes">
+          <span /><span /><span />
+        </div>
+        <span class="anim-step-label">Processes</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-ram__flag">Injected DLL</div>
+        <span class="anim-step-label">Flagged</span>
+      </template>
+      <template v-else>
+        <div class="anim-ram__chip anim-ram__chip--pulse">
+          <span v-for="n in 4" :key="n" class="anim-ram__cell" />
+        </div>
+      </template>
+    </div>
+
+    <!-- Raw Organizer -->
+    <div v-else-if="type === 'raw'" class="anim anim-raw">
+      <template v-if="phase === 1">
+        <div class="anim-raw__blob">
+          <span v-for="n in 8" :key="n" class="anim-raw__dot" />
+        </div>
+        <span class="anim-step-label">Raw dump</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-raw__struct">
+          <span /><span /><span />
+        </div>
+        <span class="anim-step-label">Structured</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-raw__link">→ Molecules</div>
+        <span class="anim-step-label">Linked</span>
+      </template>
+      <template v-else>
+        <div class="anim-raw__blob anim-raw__blob--compact">
+          <span v-for="n in 5" :key="n" class="anim-raw__dot" />
+        </div>
+        <div class="anim-raw__arrow">→</div>
+        <div class="anim-raw__struct anim-raw__struct--sm">
+          <span /><span />
+        </div>
+      </template>
+    </div>
+
+    <!-- EDR -->
+    <div v-else-if="type === 'edr'" class="anim anim-edr">
+      <template v-if="phase === 1">
+        <div class="anim-edr__endpoint" />
+        <span class="anim-step-label">Endpoint</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-edr__timeline">
+          <span v-for="n in 4" :key="n" class="anim-edr__event" />
+        </div>
+        <span class="anim-step-label">Events</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-edr__alert">Suspicious</div>
+        <span class="anim-step-label">Flagged</span>
+      </template>
+      <template v-else>
+        <div class="anim-edr__timeline anim-edr__timeline--full">
+          <span v-for="n in 3" :key="n" class="anim-edr__event" />
+        </div>
+      </template>
+    </div>
+
+    <!-- IPDR -->
+    <div v-else-if="type === 'ipdr'" class="anim anim-ipdr">
+      <template v-if="phase === 1">
+        <div class="anim-ipdr__nodes">
+          <span class="anim-ipdr__node" /><span class="anim-ipdr__node" />
+        </div>
+        <span class="anim-step-label">Sessions</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <svg class="anim-ipdr__lines" viewBox="0 0 80 40">
+          <line x1="12" y1="20" x2="68" y2="20" class="anim-ipdr__line" />
+          <line x1="40" y1="8" x2="40" y2="32" class="anim-ipdr__line anim-ipdr__line--2" />
+        </svg>
+        <span class="anim-step-label">Mapping</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-ipdr__dns">DNS · VPN</div>
+        <span class="anim-step-label">Patterns</span>
+      </template>
+      <template v-else>
+        <div class="anim-ipdr__nodes anim-ipdr__nodes--full">
+          <span class="anim-ipdr__node" /><span class="anim-ipdr__node" /><span class="anim-ipdr__node" />
+        </div>
+      </template>
+    </div>
+
+    <!-- Rootkit -->
+    <div v-else-if="type === 'rootkit'" class="anim anim-rootkit">
+      <template v-if="phase === 1">
+        <div class="anim-rootkit__layer anim-rootkit__layer--disk">Disk</div>
+        <div class="anim-rootkit__layer anim-rootkit__layer--ram">RAM</div>
+        <span class="anim-step-label">Acquire</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-rootkit__scan">
+          <span class="anim-rootkit__hidden" />
+          <span class="anim-rootkit__visible" />
+        </div>
+        <span class="anim-step-label">Cross-ref</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-rootkit__hit">Hidden process</div>
+        <span class="anim-step-label">Detected</span>
+      </template>
+      <template v-else>
+        <div class="anim-rootkit__hit">Rootkit ✓</div>
+      </template>
+    </div>
+
     <!-- Disk analysis -->
     <div v-else-if="type === 'disk'" class="anim anim-disk">
       <template v-if="phase === 1">
@@ -1649,6 +1799,81 @@ defineProps({
   font-size: 0.5rem;
   color: var(--on-surface-variant);
 }
+
+/* CoC */
+.anim-coc { flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+.anim-coc__drive { width: 40px; height: 28px; border-radius: 4px; background: var(--surface-container-high); border: 1.5px solid var(--outline-variant); }
+.anim-coc__drive--sm { width: 28px; height: 20px; }
+.anim-coc__drive--copy { border-color: rgba(52, 211, 153, 0.45); }
+.anim-coc__copy { display: flex; align-items: center; gap: 6px; }
+.anim-coc__arrow { font-size: 0.75rem; color: var(--primary-container); }
+.anim-coc__hash { font-size: 0.625rem; font-weight: 700; color: var(--accent-warm); }
+.anim-coc__hash-val { font-size: 0.5625rem; font-family: monospace; color: var(--on-surface-variant); animation: fade-up 2s ease infinite; }
+
+/* RAM */
+.anim-ram { flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+.anim-ram__chip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 6px; border-radius: 4px; border: 1px solid var(--outline-variant); }
+.anim-ram__chip--pulse { animation: hub-pulse 2s ease infinite; }
+.anim-ram__cell { width: 8px; height: 8px; border-radius: 1px; background: var(--primary-container); opacity: 0.5; animation: mesh-pulse 1.5s ease infinite; }
+.anim-ram__cell:nth-child(2) { animation-delay: 0.15s; }
+.anim-ram__cell:nth-child(3) { animation-delay: 0.3s; }
+.anim-ram__processes { display: flex; flex-direction: column; gap: 4px; width: 64px; }
+.anim-ram__processes span { height: 5px; border-radius: 2px; background: var(--surface-container-high); animation: grow-bar 2s ease infinite; transform-origin: left; }
+.anim-ram__processes span:nth-child(1) { width: 90%; }
+.anim-ram__processes span:nth-child(2) { width: 70%; animation-delay: 0.2s; }
+.anim-ram__processes span:nth-child(3) { width: 50%; animation-delay: 0.4s; }
+.anim-ram__flag { font-size: 0.625rem; font-weight: 700; color: #ef4444; padding: 2px 6px; border-radius: 4px; background: rgba(239, 68, 68, 0.12); }
+
+/* Raw */
+.anim-raw { flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+.anim-raw__blob { position: relative; width: 48px; height: 36px; border-radius: 6px; border: 1px dashed var(--outline-variant); }
+.anim-raw__blob--compact { width: 32px; height: 24px; }
+.anim-raw__dot { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--on-surface-variant); opacity: 0.5; }
+.anim-raw__dot:nth-child(1) { left: 20%; top: 25%; }
+.anim-raw__dot:nth-child(2) { left: 55%; top: 15%; }
+.anim-raw__dot:nth-child(3) { left: 70%; top: 45%; }
+.anim-raw__dot:nth-child(4) { left: 30%; top: 60%; }
+.anim-raw__dot:nth-child(5) { left: 50%; top: 70%; }
+.anim-raw__struct { display: flex; flex-direction: column; gap: 4px; width: 56px; }
+.anim-raw__struct--sm { width: 36px; }
+.anim-raw__struct span { height: 5px; border-radius: 2px; background: rgba(61, 90, 254, 0.35); animation: grow-bar 2s ease infinite; transform-origin: left; }
+.anim-raw__struct span:nth-child(1) { width: 100%; }
+.anim-raw__struct span:nth-child(2) { width: 75%; animation-delay: 0.15s; }
+.anim-raw__struct span:nth-child(3) { width: 50%; animation-delay: 0.3s; }
+.anim-raw__link { font-size: 0.625rem; font-weight: 700; color: #fbbf24; }
+.anim-raw__arrow { font-size: 0.75rem; color: var(--primary-container); }
+
+/* EDR */
+.anim-edr { flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+.anim-edr__endpoint { width: 36px; height: 28px; border-radius: 4px; border: 1.5px solid var(--outline-variant); background: var(--surface-container-high); }
+.anim-edr__timeline { display: flex; flex-direction: column; gap: 4px; width: 56px; }
+.anim-edr__timeline--full { width: 48px; }
+.anim-edr__event { height: 4px; border-radius: 2px; background: var(--primary-container); opacity: 0.6; animation: fade-up 2s ease infinite; }
+.anim-edr__event:nth-child(2) { animation-delay: 0.2s; width: 80%; }
+.anim-edr__event:nth-child(3) { animation-delay: 0.4s; width: 60%; }
+.anim-edr__event:nth-child(4) { animation-delay: 0.6s; width: 90%; }
+.anim-edr__alert { font-size: 0.625rem; font-weight: 700; color: #ef4444; padding: 2px 8px; border-radius: 4px; background: rgba(239, 68, 68, 0.12); }
+
+/* IPDR */
+.anim-ipdr { flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+.anim-ipdr__nodes { display: flex; gap: 24px; align-items: center; }
+.anim-ipdr__nodes--full { gap: 12px; }
+.anim-ipdr__node { width: 10px; height: 10px; border-radius: 50%; background: var(--primary-container); animation: node-pulse 2s ease infinite; }
+.anim-ipdr__node:nth-child(2) { animation-delay: 0.3s; }
+.anim-ipdr__lines { width: 64px; height: 32px; }
+.anim-ipdr__line { stroke: rgba(61, 90, 254, 0.5); stroke-width: 1.5; stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw-line 2s ease infinite; }
+.anim-ipdr__line--2 { animation-delay: 0.3s; }
+.anim-ipdr__dns { font-size: 0.5625rem; font-weight: 700; color: var(--accent-warm); padding: 2px 6px; border-radius: 4px; background: rgba(251, 191, 36, 0.1); }
+
+/* Rootkit */
+.anim-rootkit { flex-direction: column; gap: 4px; align-items: center; justify-content: center; }
+.anim-rootkit__layer { font-size: 0.5625rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--outline-variant); }
+.anim-rootkit__layer--disk { color: var(--on-surface-variant); }
+.anim-rootkit__layer--ram { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+.anim-rootkit__scan { display: flex; gap: 8px; align-items: center; }
+.anim-rootkit__hidden { width: 20px; height: 20px; border-radius: 50%; border: 1.5px dashed #ef4444; opacity: 0.5; animation: hub-pulse 2s ease infinite; }
+.anim-rootkit__visible { width: 20px; height: 20px; border-radius: 50%; background: rgba(61, 90, 254, 0.2); border: 1px solid var(--primary-container); }
+.anim-rootkit__hit { font-size: 0.625rem; font-weight: 700; color: #ef4444; padding: 3px 8px; border-radius: 4px; background: rgba(239, 68, 68, 0.12); animation: pulse-text 2s ease infinite; }
 
 /* Disk */
 .anim-disk {

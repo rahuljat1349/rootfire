@@ -11,15 +11,15 @@
 
     <div class="container hero__layout">
       <div class="hero__copy">
-        <p class="hero__eyebrow hero-animate" style="--d: 0">For agencies who can't afford leaks</p>
+        <p class="hero__eyebrow hero-animate" style="--d: 0">{{ PRODUCT_TAGLINE }}</p>
         <h1 class="hero__title hero-animate" style="--d: 1">
-          Turn scattered evidence into
-          <span class="hero__highlight">actionable intelligence</span>
-          — without sending a single file to the cloud.
+          The forensic operating system for
+          <span class="hero__highlight">end-to-end investigations</span>
+          — acquire, analyze, correlate.
         </h1>
         <p class="hero__subtitle hero-animate" style="--d: 2">
-          {{ PRODUCT_NAME }} gives your team one place to identify people, search case files,
-          and query evidence through Lens — with proof attached to every answer.
+          {{ PRODUCT_NAME }} preserves evidence with hash-first chain of custody, extracts artifacts
+          from disk, mobile, memory, and network — then builds the evidence graph through Molecules and Lens.
         </p>
 
         <div class="hero__actions hero-animate" style="--d: 3">
@@ -45,7 +45,7 @@
 <script setup>
 import CtaButton from './CtaButton.vue'
 import ProductPreview from './ProductPreview.vue'
-import { DEMO_URL, PRODUCT_NAME } from '@/config.js'
+import { DEMO_URL, PRODUCT_NAME, PRODUCT_TAGLINE } from '@/config.js'
 </script>
 
 <style scoped>

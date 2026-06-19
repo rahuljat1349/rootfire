@@ -52,6 +52,37 @@
     <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
     <path d="M12 8v1M12 15v1M8 12H7M17 12h-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
+  <svg v-else-if="name === 'coc'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="6" width="10" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M16 10h4M18 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <svg v-else-if="name === 'ram'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M7 7V5M10 7V5M13 7V5M16 7V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7 17v2M10 17v2M13 17v2M16 17v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <svg v-else-if="name === 'raw'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <circle cx="6" cy="8" r="1.5" fill="currentColor" opacity="0.5"/>
+    <circle cx="10" cy="14" r="1.5" fill="currentColor" opacity="0.5"/>
+    <circle cx="14" cy="6" r="1.5" fill="currentColor" opacity="0.5"/>
+    <path d="M16 16h5M18 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <svg v-else-if="name === 'edr'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 20h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M12 16v4" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <svg v-else-if="name === 'ipdr'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <circle cx="6" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="18" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+  </svg>
+  <svg v-else-if="name === 'rootkit'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="12" cy="12" r="3" stroke="#ef4444" stroke-width="1.5"/>
+    <path d="M12 2v3M12 19v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
   <svg v-else-if="name === 'document'" width="20" height="20" viewBox="0 0 24 24" fill="none">
     <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/>
     <path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>

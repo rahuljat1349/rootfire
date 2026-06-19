@@ -19,7 +19,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'How is this different from tools we already have?',
-    a: `Most agencies stitch together separate vendors for face, documents, and search. ${PRODUCT_NAME} unifies every modality in one dashboard — with relationships and audit trails built in.`,
+    a: `Most agencies stitch together separate vendors for disk, mobile, biometrics, and documents. ${PRODUCT_NAME} is a full forensic OS — acquire, extract, correlate, and query in one platform with hash-first chain of custody.`,
   },
   {
     q: 'What do we need to get started?',

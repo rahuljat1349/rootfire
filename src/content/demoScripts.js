@@ -1,17 +1,31 @@
 export const DEMO_TOURS = [
   {
-    id: 'identify',
-    title: 'The 10-minute identity tour',
+    id: 'forensic-os',
+    title: 'The forensic OS tour',
     duration: '10 min',
     tagline: 'Perfect for first meetings',
     description:
-      'Watch a face go from unknown photo to confirmed match — then see the full subject record behind it.',
+      'Watch Chain of Custody hash a seized drive, Volume catalog the evidence, and Molecules connect the dots.',
     highlights: [
-      'Enroll and match with Obsedian Prism',
-      'Verify two photos side-by-side',
-      'Live camera identification demo',
+      'Chain of Custody — forensic copy and hash',
+      'Obsedian Volume — disk and mobile acquisition',
+      'Molecules correlation graph',
     ],
-    outcome: 'Leadership sees: "We can ID someone in seconds."',
+    outcome: 'Leadership sees: "One OS replaces our entire tool stack."',
+  },
+  {
+    id: 'identify',
+    title: 'The identity and biometrics tour',
+    duration: '10 min',
+    tagline: 'For biometric-focused buyers',
+    description:
+      'Prism enroll, verify, and search — plus Iris, voice diarization, and live multi-object matching.',
+    highlights: [
+      'Obsedian Prism — enroll, verify, search, facial features',
+      'Obsedian Iris and voice diarization',
+      'Live identification on any camera',
+    ],
+    outcome: 'Leadership sees: "We can ID someone in seconds — with proof."',
   },
   {
     id: 'investigate',
@@ -19,12 +33,11 @@ export const DEMO_TOURS = [
     duration: '10 min',
     tagline: 'For case-focused buyers',
     description:
-      'Upload a chargesheet, ask it questions, and watch the platform connect people, documents, and relationships.',
+      'Documents semantic search, Lens cross-modal queries, and Molecules building the full evidence graph.',
     highlights: [
-      'PDF ingest with live progress',
-      'Semantic search with page citations',
-      'Lens — cross-modal queries (photos, video, docs, objects)',
-      'Molecules rebuild',
+      'All document types with page citations',
+      'Lens — cross-modal queries across every evidence type',
+      'Molecules — entity, comms, and timeline graphs',
     ],
     outcome: 'Leadership sees: "Our analysts get answers, not reading lists."',
   },
@@ -32,15 +45,15 @@ export const DEMO_TOURS = [
     id: 'full',
     title: 'The full platform reveal',
     duration: '20 min',
-    tagline: 'For procurement & technical evaluators',
+    tagline: 'For procurement and technical evaluators',
     description:
-      'Every modality — face, fingerprint, iris, voice, video, documents, Lens — in one continuous story from evidence to insight.',
+      'Every layer — CoC, Volume, RAM, EDR, IPDR, biometrics, documents, Lens, and Molecules — in one continuous story.',
     highlights: [
-      'Complete biometric workflow',
-      'Document search + Lens intelligence',
-      'Fingerprint, iris, voice, and video demos',
-      'System health & data overview',
+      'Hash-first acquisition and Volume hub',
+      'DFIR — EDR, IPDR, rootkit and fileless detection',
+      'Full biometric and intelligence workflow',
+      '21 evidence categories — see Coverage page',
     ],
-    outcome: 'Leadership sees: "One platform replaces our entire tool stack."',
+    outcome: 'Leadership sees: "This is a forensic operating system, not a point tool."',
   },
 ]
