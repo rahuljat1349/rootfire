@@ -7,6 +7,7 @@
   <VolumeLogo v-else-if="productId === 'volume'" :size="size" />
   <PersonaLogo v-else-if="productId === 'persona'" :size="size" />
   <INsightLogo v-else-if="productId === 'insight'" :size="size" />
+  <ModuleLogo v-else-if="isModuleLogo(productId)" :product-id="productId" :size="size" />
   <GenericProductLogo
     v-else
     :short-name="shortName || productId"
@@ -24,7 +25,9 @@ import SpectraLogo from './SpectraLogo.vue'
 import VolumeLogo from './VolumeLogo.vue'
 import PersonaLogo from './PersonaLogo.vue'
 import INsightLogo from './INsightLogo.vue'
+import ModuleLogo from './ModuleLogo.vue'
 import GenericProductLogo from './GenericProductLogo.vue'
+import { isModuleLogo } from './moduleLogoMeta.js'
 
 defineProps({
   productId: { type: String, required: true },
