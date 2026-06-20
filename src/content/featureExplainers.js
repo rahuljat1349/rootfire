@@ -65,4 +65,7 @@ export const FEATURE_EXPLAINERS = {
   graph: {
     steps: ['Evidence becomes graph nodes', 'Connections discovered automatically', 'Molecules shows the full picture'],
   },
+  spectra: {
+    steps: ['Ingest image, video, or audio evidence', 'Engines extract artifacts and biometrics', 'Results feed Molecules and Lens'],
+  },
 }

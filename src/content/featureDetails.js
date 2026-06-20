@@ -102,9 +102,9 @@ export const FEATURE_DETAILS = {
     idealFor: ['Legacy case imports', 'Multi-tool investigation merges', 'Building the Molecules graph'],
   },
   prism: {
-    tagline: 'Enroll, verify, search — and index every facial feature.',
+    tagline: 'Face intelligence — enroll, verify, search, and index every facial feature.',
     overview:
-      'Obsedian Prism is your complete face biometrics module. Enroll subjects, verify 1:1, search 1:N — and index moles, scars, landmarks, and distinguishing features on every subject record for richer matching.',
+      'Obsedian Prism is the face intelligence engine for the forensic OS. Enroll subjects, verify 1:1, search 1:N — and index moles, scars, landmarks, and distinguishing features on every subject record for richer matching than point solutions.',
     steps: [
       {
         title: 'Enroll face templates',
@@ -479,6 +479,31 @@ export const FEATURE_DETAILS = {
       'The investigative differentiator — not just extraction',
     ],
     idealFor: ['Organized crime mapping', 'Communication network analysis', 'Stakeholder network briefings'],
+  },
+  spectra: {
+    tagline: 'Unified media intelligence — image, video, audio, and fingerprints.',
+    overview:
+      'Obsedian Spectra is the media analysis engine for the forensic OS. Image artifacts from EXIF to PRNU, video and CCTV analytics with object tracking, multi-speaker voice diarization, fingerprint matching, and batch media processing — all feeding Obsedian Molecules and Lens.',
+    steps: [
+      {
+        title: 'Ingest any media evidence',
+        body: 'Images, surveillance video, wiretap audio, latent prints, and mixed media batches — one engine, one subject record.',
+      },
+      {
+        title: 'Extract artifacts and biometrics',
+        body: 'EXIF, GPS, PRNU, deepfake signals, face and object tracks, speaker clusters, and ridge patterns — in parallel.',
+      },
+      {
+        title: 'Correlate across the OS',
+        body: 'Media findings link to Prism subjects, Volume artifacts, and the Molecules correlation graph automatically.',
+      },
+    ],
+    benefits: [
+      'Image, video, audio, and fingerprint — not four separate vendors',
+      'CCTV analytics and multi-camera tracking built in',
+      'Every media artifact feeds Molecules and Lens',
+    ],
+    idealFor: ['Surveillance and CCTV review', 'Wiretap and interview audio', 'Camera attribution and image authenticity'],
   },
 }
 

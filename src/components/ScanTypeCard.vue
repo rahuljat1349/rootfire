@@ -18,10 +18,7 @@
       </div>
       <p v-if="scan.outcome" class="scan-card__outcome">{{ scan.outcome }}</p>
       <h3 class="scan-card__title">
-        <LensLogo v-if="scan.id === 'lens'" size="md" />
-        <MoleculesLogo v-else-if="scan.id === 'molecules'" size="md" />
-        <PrismLogo v-else-if="scan.id === 'prism'" size="md" />
-        <IrisLogo v-else-if="scan.id === 'iris'" size="md" />
+        <ProductTitle v-if="scan.flagship" :product-id="scan.id" :label="scan.label" size="md" />
         <template v-else>{{ scan.label }}</template>
       </h3>
       <p class="scan-card__desc">{{ scan.description }}</p>
@@ -33,10 +30,7 @@
 <script setup>
 import { computed } from 'vue'
 import ScanTypeIcon from './ScanTypeIcon.vue'
-import LensLogo from './LensLogo.vue'
-import MoleculesLogo from './MoleculesLogo.vue'
-import PrismLogo from './PrismLogo.vue'
-import IrisLogo from './IrisLogo.vue'
+import ProductTitle from './ProductTitle.vue'
 import FeatureAnimation from './FeatureAnimation.vue'
 import { FEATURE_EXPLAINERS } from '@/content/featureExplainers.js'
 

@@ -31,7 +31,7 @@
       </div>
 
       <div class="demo__cta reveal reveal-scale">
-        <CtaButton :href="DEMO_URL" variant="primary">Book a live demo</CtaButton>
+        <CtaButton href="/demo?intent=demo" variant="primary">Request demo</CtaButton>
         <p class="demo__note">
           Live environment available on request. We'll tailor the tour to your agency's priorities.
         </p>

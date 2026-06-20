@@ -1,13 +1,13 @@
 <template>
-  <span class="molecules-logo" :class="[`molecules-logo--${size}`, { 'molecules-logo--icon-only': iconOnly }]">
+  <span class="molecules-logo" :class="[`molecules-logo--${size}`, { 'molecules-logo--icon-only': iconOnly, 'molecules-logo--animated': animated }]">
     <span class="molecules-logo__icon" aria-hidden="true">
       <svg :width="iconSize" :height="iconSize" viewBox="0 0 28 28" fill="none">
-        <line x1="8" y1="20" x2="14" y2="8" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
-        <line x1="14" y1="8" x2="20" y2="20" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
-        <line x1="8" y1="20" x2="20" y2="20" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
-        <circle cx="8" cy="20" r="3" :fill="`url(#${nodeGradId})`" />
-        <circle cx="14" cy="8" r="3" :fill="`url(#${nodeGradId})`" />
-        <circle cx="20" cy="20" r="3" :fill="`url(#${nodeGradId})`" />
+        <line x1="8" y1="20" x2="14" y2="8" class="molecules-logo__line molecules-logo__line--1" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="14" y1="8" x2="20" y2="20" class="molecules-logo__line molecules-logo__line--2" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="8" y1="20" x2="20" y2="20" class="molecules-logo__line molecules-logo__line--3" :stroke="`url(#${lineGradId})`" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="8" cy="20" r="3" class="molecules-logo__node molecules-logo__node--1" :fill="`url(#${nodeGradId})`" />
+        <circle cx="14" cy="8" r="3" class="molecules-logo__node molecules-logo__node--2" :fill="`url(#${nodeGradId})`" />
+        <circle cx="20" cy="20" r="3" class="molecules-logo__node molecules-logo__node--3" :fill="`url(#${nodeGradId})`" />
         <defs>
           <linearGradient :id="lineGradId" x1="8" y1="8" x2="20" y2="20">
             <stop stop-color="#fbbf24" />
@@ -37,6 +37,7 @@ const props = defineProps({
     default: 'md',
     validator: (v) => ['icon', 'sm', 'md', 'lg'].includes(v),
   },
+  animated: { type: Boolean, default: true },
 })
 
 const lineGradId = useId()
@@ -116,5 +117,42 @@ const iconSize = computed(() => {
 
 .molecules-logo--lg .molecules-logo__name {
   font-size: 1.125rem;
+}
+
+.molecules-logo--animated .molecules-logo__node--1 {
+  animation: molecules-node 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.molecules-logo--animated .molecules-logo__node--2 {
+  animation: molecules-node 2.2s ease-in-out infinite 0.25s;
+  transform-origin: center;
+}
+
+.molecules-logo--animated .molecules-logo__node--3 {
+  animation: molecules-node 2.2s ease-in-out infinite 0.5s;
+  transform-origin: center;
+}
+
+.molecules-logo--animated .molecules-logo__line {
+  animation: molecules-line 2.5s ease-in-out infinite;
+}
+
+.molecules-logo--animated .molecules-logo__line--2 {
+  animation-delay: 0.2s;
+}
+
+.molecules-logo--animated .molecules-logo__line--3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes molecules-node {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes molecules-line {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 </style>

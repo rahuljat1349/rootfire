@@ -1,20 +1,30 @@
 <template>
-  <span class="prism-logo" :class="[`prism-logo--${size}`, { 'prism-logo--icon-only': iconOnly }]">
+  <span class="prism-logo" :class="[`prism-logo--${size}`, { 'prism-logo--icon-only': iconOnly, 'prism-logo--animated': animated }]">
     <span class="prism-logo__icon" aria-hidden="true">
       <svg :width="iconSize" :height="iconSize" viewBox="0 0 28 28" fill="none">
         <path
           d="M14 4L24 22H4L14 4Z"
+          class="prism-logo__frame"
           :stroke="`url(#${strokeGradId})`"
           stroke-width="1.5"
           stroke-linejoin="round"
         />
-        <path d="M14 4v18M4 22h20" :stroke="`url(#${strokeGradId})`" stroke-width="1" stroke-opacity="0.45" />
+        <path d="M14 4v18M4 22h20" class="prism-logo__grid" :stroke="`url(#${strokeGradId})`" stroke-width="1" stroke-opacity="0.45" />
         <path
           d="M14 10l4 8M14 10l-4 8"
+          class="prism-logo__beam prism-logo__beam--1"
           :stroke="`url(#${beamGradId})`"
           stroke-width="1.25"
           stroke-linecap="round"
           stroke-opacity="0.85"
+        />
+        <path
+          d="M10 18l8-4M18 18l-8-4"
+          class="prism-logo__beam prism-logo__beam--2"
+          :stroke="`url(#${beamGradId})`"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-opacity="0.55"
         />
         <defs>
           <linearGradient :id="strokeGradId" x1="4" y1="4" x2="24" y2="22">
@@ -46,6 +56,7 @@ const props = defineProps({
     default: 'md',
     validator: (v) => ['icon', 'sm', 'md', 'lg'].includes(v),
   },
+  animated: { type: Boolean, default: true },
 })
 
 const strokeGradId = useId()
@@ -125,5 +136,27 @@ const iconSize = computed(() => {
 
 .prism-logo--lg .prism-logo__name {
   font-size: 1.125rem;
+}
+
+.prism-logo--animated .prism-logo__beam--1 {
+  animation: prism-beam 2.4s ease-in-out infinite;
+}
+
+.prism-logo--animated .prism-logo__beam--2 {
+  animation: prism-beam 2.4s ease-in-out infinite 0.6s;
+}
+
+.prism-logo--animated .prism-logo__frame {
+  animation: prism-glow 3s ease-in-out infinite;
+}
+
+@keyframes prism-beam {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+@keyframes prism-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 0 4px rgba(124, 77, 255, 0.45)); }
 }
 </style>

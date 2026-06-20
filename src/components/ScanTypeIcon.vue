@@ -40,6 +40,10 @@
     <rect x="2" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
     <path d="M17 10l5-3v10l-5-3v-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
   </svg>
+  <svg v-else-if="name === 'spectra'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M4 12c2-5 5-8 8-8s6 3 8 8c-2 5-5 8-8 8S6 17 4 12Z" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" opacity="0.6"/>
+  </svg>
   <svg v-else-if="name === 'batch'" width="20" height="20" viewBox="0 0 24 24" fill="none">
     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>

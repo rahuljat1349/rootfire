@@ -22,6 +22,10 @@
           <p class="security-card__desc">{{ point.description }}</p>
         </article>
       </div>
+
+      <p class="security__more reveal">
+        <router-link to="/trust">Full trust & security overview →</router-link>
+      </p>
     </div>
   </section>
 </template>
@@ -72,5 +76,15 @@ import SecurityIcon from './SecurityIcon.vue'
   font-size: 0.875rem;
   color: var(--on-surface-variant);
   line-height: 1.65;
+}
+.security__more {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.security__more a {
+  color: var(--primary-container);
 }
 </style>

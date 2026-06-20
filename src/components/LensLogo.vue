@@ -1,10 +1,10 @@
 <template>
-  <span class="lens-logo" :class="[`lens-logo--${size}`, { 'lens-logo--icon-only': iconOnly }]">
+  <span class="lens-logo" :class="[`lens-logo--${size}`, { 'lens-logo--icon-only': iconOnly, 'lens-logo--animated': animated }]">
     <span class="lens-logo__icon" aria-hidden="true">
       <svg :width="iconSize" :height="iconSize" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" :stroke="`url(#${ringGradId})`" stroke-width="1.5" />
-        <circle cx="14" cy="14" r="7" stroke="rgba(167,139,250,0.45)" stroke-width="1" />
-        <circle cx="14" cy="14" r="3.5" :fill="`url(#${coreGradId})`" />
+        <circle cx="14" cy="14" r="11" class="lens-logo__ring lens-logo__ring--outer" :stroke="`url(#${ringGradId})`" stroke-width="1.5" />
+        <circle cx="14" cy="14" r="7" class="lens-logo__ring lens-logo__ring--mid" stroke="rgba(167,139,250,0.45)" stroke-width="1" />
+        <circle cx="14" cy="14" r="3.5" class="lens-logo__core" :fill="`url(#${coreGradId})`" />
         <path
           d="M14 3v2M14 23v2M3 14h2M23 14h2"
           stroke="rgba(61,90,254,0.5)"
@@ -40,6 +40,7 @@ const props = defineProps({
     default: 'md',
     validator: (v) => ['icon', 'sm', 'md', 'lg'].includes(v),
   },
+  animated: { type: Boolean, default: true },
 })
 
 const ringGradId = useId()
@@ -119,5 +120,30 @@ const iconSize = computed(() => {
 
 .lens-logo--lg .lens-logo__name {
   font-size: 1.125rem;
+}
+
+.lens-logo--animated .lens-logo__ring--outer {
+  animation: lens-focus 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.lens-logo--animated .lens-logo__ring--mid {
+  animation: lens-focus 3s ease-in-out infinite 0.25s;
+  transform-origin: center;
+}
+
+.lens-logo--animated .lens-logo__core {
+  animation: lens-core 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes lens-focus {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes lens-core {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; filter: drop-shadow(0 0 3px rgba(61, 90, 254, 0.5)); }
 }
 </style>

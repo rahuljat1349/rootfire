@@ -3,31 +3,47 @@
     <div class="container">
       <CapabilitiesLayout>
         <header class="features-browse__header reveal">
-          <h1 class="features-browse__title">Forensic OS modules</h1>
+          <h1 class="features-browse__title">Six flagship products</h1>
           <p class="features-browse__subtitle">
-            Every module in the Obsedian forensic operating system — preserve, acquire, analyze, and correlate.
-            Use the menu to jump between capabilities.
+            Obsedian is a forensic operating system — not thirty disconnected tools. Browse each
+            flagship product and its capabilities below.
           </p>
         </header>
 
         <article
-          v-for="feature in SCAN_TYPES"
-          :key="feature.id"
-          :id="feature.id"
+          v-for="product in FLAGSHIP_PRODUCTS"
+          :key="product.id"
+          :id="product.id"
           class="features-browse__section reveal"
         >
           <FeatureDetailContent
-            :feature="feature"
-            :details="getFeatureDetails(feature.id)"
+            v-if="flagshipFeature(product.id)"
+            :feature="flagshipFeature(product.id)"
+            :details="getFeatureDetails(product.id)"
             show-full-page-link
             :show-related="false"
             :show-cta="false"
           />
+
+          <div
+            v-for="feature in getFeaturesForProduct(product.id)"
+            :key="feature.id"
+            :id="feature.id"
+            class="features-browse__sub reveal"
+          >
+            <FeatureDetailContent
+              :feature="feature"
+              :details="getFeatureDetails(feature.id)"
+              show-full-page-link
+              :show-related="false"
+              :show-cta="false"
+            />
+          </div>
         </article>
 
         <div class="features-browse__cta reveal reveal-scale">
           <h2>See the full platform in action</h2>
-          <p>We'll walk your team through these capabilities with scenarios relevant to your agency.</p>
+          <p>We'll walk your team through Volume, Prism, Spectra, Molecules, and Lens with scenarios relevant to your agency.</p>
           <CtaButton :href="DEMO_URL" variant="primary">Book a live demo</CtaButton>
         </div>
       </CapabilitiesLayout>
@@ -40,7 +56,8 @@ import { provide } from 'vue'
 import CapabilitiesLayout from '@/components/CapabilitiesLayout.vue'
 import FeatureDetailContent from '@/components/FeatureDetailContent.vue'
 import CtaButton from '@/components/CtaButton.vue'
-import { SCAN_TYPES } from '@/content/scanTypes.js'
+import { FLAGSHIP_PRODUCTS } from '@/content/flagshipProducts.js'
+import { getFeatureById, getFeaturesForProduct } from '@/content/scanTypes.js'
 import { getFeatureDetails } from '@/content/featureDetails.js'
 import { DEMO_URL } from '@/config.js'
 import { useScrollReveal } from '@/composables/useScrollReveal.js'
@@ -48,9 +65,17 @@ import { useFeatureScrollSpy } from '@/composables/useFeatureScrollSpy.js'
 
 useScrollReveal()
 
-const featureIds = SCAN_TYPES.map((f) => f.id)
-const { activeFeatureId } = useFeatureScrollSpy(featureIds)
+const browseIds = FLAGSHIP_PRODUCTS.flatMap((product) => [
+  product.id,
+  ...getFeaturesForProduct(product.id).map((f) => f.id),
+])
+
+const { activeFeatureId } = useFeatureScrollSpy(browseIds)
 provide('activeFeatureId', activeFeatureId)
+
+function flagshipFeature(id) {
+  return getFeatureById(id)
+}
 </script>
 
 <style scoped>
@@ -78,14 +103,20 @@ provide('activeFeatureId', activeFeatureId)
 
 .features-browse__section {
   scroll-margin-top: calc(var(--header-height) + 1.5rem);
-  padding-bottom: 3.5rem;
-  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid var(--outline-variant);
 }
 
 .features-browse__section:last-of-type {
   border-bottom: none;
-  margin-bottom: 2rem;
+}
+
+.features-browse__sub {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px dashed var(--outline-variant);
 }
 
 .features-browse__cta {

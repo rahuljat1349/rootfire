@@ -26,7 +26,7 @@ export const VALUE_PROPS = [
     description:
       'Molecules correlates subjects, communications, devices, and timelines from every module. Lens answers questions across the full graph.',
     icon: 'speed',
-    stat: '21+',
-    statLabel: 'evidence categories',
+    stat: '6',
+    statLabel: 'flagship products',
   },
 ]

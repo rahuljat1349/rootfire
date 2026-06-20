@@ -19,11 +19,11 @@ export const DEMO_TOURS = [
     duration: '10 min',
     tagline: 'For biometric-focused buyers',
     description:
-      'Prism enroll, verify, and search — plus Iris, voice diarization, and live multi-object matching.',
+      'Six flagship products in one story — Volume acquires, Prism and Spectra analyze, Molecules correlates, Lens investigates.',
     highlights: [
-      'Obsedian Prism — enroll, verify, search, facial features',
-      'Obsedian Iris and voice diarization',
-      'Live identification on any camera',
+      'Obsedian Volume — acquisition and evidence hub',
+      'Prism, Iris, and Spectra — analysis engines',
+      'Molecules and Lens — correlation and copilot',
     ],
     outcome: 'Leadership sees: "We can ID someone in seconds — with proof."',
   },

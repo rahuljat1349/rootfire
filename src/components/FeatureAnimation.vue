@@ -399,6 +399,16 @@
       </template>
     </div>
 
+    <!-- Spectra — unified media -->
+    <div v-else-if="type === 'spectra'" class="anim anim-spectra">
+      <div class="anim-spectra__wave anim-spectra__wave--1" />
+      <div class="anim-spectra__wave anim-spectra__wave--2" />
+      <div class="anim-spectra__wave anim-spectra__wave--3" />
+      <div v-if="phase !== 1" class="anim-spectra__icons">
+        <span>🖼</span><span>▶</span><span>🎙</span>
+      </div>
+    </div>
+
     <!-- Batch -->
     <div v-else-if="type === 'batch'" class="anim anim-batch">
       <div v-for="n in 6" :key="n" class="anim-batch__cell">
@@ -754,7 +764,205 @@
       </template>
     </div>
 
-    <div v-else class="anim anim-fallback" />
+    <!-- Persona — unified subject profile -->
+    <div v-else-if="type === 'persona'" class="anim anim-persona">
+      <template v-if="phase === 1">
+        <div class="anim-persona__core" />
+        <span class="anim-step-label">Subject</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-persona__hub">
+          <div class="anim-persona__core anim-persona__core--sm" />
+          <span v-for="n in 4" :key="n" class="anim-persona__modality" :style="{ '--i': n }" />
+        </div>
+        <span class="anim-step-label">Fusing modalities</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-persona__profile">
+          <div class="anim-persona__core anim-persona__core--sm" />
+          <div class="anim-persona__fields">
+            <span /><span /><span />
+          </div>
+        </div>
+        <span class="anim-step-label">Complete profile</span>
+      </template>
+      <template v-else>
+        <div class="anim-persona__hub">
+          <div class="anim-persona__core" />
+          <span v-for="n in 4" :key="n" class="anim-persona__modality" :style="{ '--i': n }" />
+        </div>
+      </template>
+    </div>
+
+    <!-- INsight — learning loop -->
+    <div v-else-if="type === 'insight'" class="anim anim-insight">
+      <template v-if="phase === 1">
+        <div class="anim-insight__loop">
+          <span v-for="n in 5" :key="n" class="anim-insight__node" :style="{ '--i': n }" />
+        </div>
+        <span class="anim-step-label">Evidence in</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-insight__loop anim-insight__loop--active">
+          <span v-for="n in 5" :key="n" class="anim-insight__node" :style="{ '--i': n }" />
+          <span class="anim-insight__pulse" />
+        </div>
+        <span class="anim-step-label">Feedback loop</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-insight__result">
+          <span class="anim-insight__badge">Smarter next case</span>
+          <div class="anim-insight__bars">
+            <span /><span /><span />
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="anim-insight__loop anim-insight__loop--active">
+          <span v-for="n in 5" :key="n" class="anim-insight__node" :style="{ '--i': n }" />
+          <span class="anim-insight__pulse" />
+        </div>
+      </template>
+    </div>
+
+    <!-- Chronos — timeline intelligence -->
+    <div v-else-if="type === 'chronos'" class="anim anim-chronos">
+      <template v-if="phase === 1">
+        <div class="anim-chronos__track">
+          <span class="anim-chronos__event anim-chronos__event--1" />
+        </div>
+        <span class="anim-step-label">First event</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-chronos__track">
+          <span v-for="n in 3" :key="n" class="anim-chronos__event" :class="`anim-chronos__event--${n}`" />
+        </div>
+        <span class="anim-step-label">Correlating</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-chronos__track anim-chronos__track--full">
+          <span v-for="n in 5" :key="n" class="anim-chronos__event" :class="`anim-chronos__event--${n}`" />
+          <span class="anim-chronos__highlight" />
+        </div>
+        <span class="anim-step-label">Unified timeline</span>
+      </template>
+      <template v-else>
+        <div class="anim-chronos__track anim-chronos__track--full">
+          <span v-for="n in 5" :key="n" class="anim-chronos__event" :class="`anim-chronos__event--${n}`" />
+        </div>
+      </template>
+    </div>
+
+    <!-- Flow — workflow automation -->
+    <div v-else-if="type === 'flow'" class="anim anim-flow">
+      <template v-if="phase === 1">
+        <div class="anim-flow__step anim-flow__step--1">Ingest</div>
+        <span class="anim-step-label">Trigger</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-flow__pipeline">
+          <div class="anim-flow__step">Ingest</div>
+          <span class="anim-flow__arrow">→</span>
+          <div class="anim-flow__step anim-flow__step--active">Triage</div>
+          <span class="anim-flow__dot" />
+        </div>
+        <span class="anim-step-label">Routing</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-flow__pipeline">
+          <div class="anim-flow__step">Ingest</div>
+          <span class="anim-flow__arrow">→</span>
+          <div class="anim-flow__step">Triage</div>
+          <span class="anim-flow__arrow">→</span>
+          <div class="anim-flow__step anim-flow__step--done">Alert</div>
+        </div>
+        <span class="anim-step-label">Automated</span>
+      </template>
+      <template v-else>
+        <div class="anim-flow__pipeline">
+          <div class="anim-flow__step">Ingest</div>
+          <span class="anim-flow__arrow">→</span>
+          <div class="anim-flow__step anim-flow__step--active">Triage</div>
+          <span class="anim-flow__arrow">→</span>
+          <div class="anim-flow__step">Route</div>
+          <span class="anim-flow__dot anim-flow__dot--travel" />
+        </div>
+      </template>
+    </div>
+
+    <!-- Command — case management -->
+    <div v-else-if="type === 'command'" class="anim anim-command">
+      <template v-if="phase === 1">
+        <div class="anim-command__board">
+          <div v-for="n in 2" :key="n" class="anim-command__case" />
+        </div>
+        <span class="anim-step-label">Cases open</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-command__board">
+          <div v-for="n in 3" :key="n" class="anim-command__case" :style="{ '--i': n }">
+            <span class="anim-command__status" />
+          </div>
+        </div>
+        <span class="anim-step-label">Assigned</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-command__board anim-command__board--wide">
+          <div v-for="n in 4" :key="n" class="anim-command__case" :class="{ 'anim-command__case--done': n === 4 }">
+            <span class="anim-command__status" />
+          </div>
+        </div>
+        <span class="anim-step-label">Lifecycle tracked</span>
+      </template>
+      <template v-else>
+        <div class="anim-command__board anim-command__board--wide">
+          <div v-for="n in 3" :key="n" class="anim-command__case" :style="{ '--i': n }">
+            <span class="anim-command__status" />
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- Vault — secure evidence storage -->
+    <div v-else-if="type === 'vault'" class="anim anim-vault">
+      <template v-if="phase === 1">
+        <div class="anim-vault__shield">
+          <span class="anim-vault__lock" />
+        </div>
+        <span class="anim-step-label">Secured</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-vault__access">
+          <div class="anim-vault__shield anim-vault__shield--sm">
+            <span class="anim-vault__lock" />
+          </div>
+          <div class="anim-vault__roles">
+            <span /><span /><span />
+          </div>
+        </div>
+        <span class="anim-step-label">Access control</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-vault__verified">
+          <div class="anim-vault__shield anim-vault__shield--sm">
+            <span class="anim-vault__check">✓</span>
+          </div>
+          <span class="anim-vault__hold">Legal hold</span>
+        </div>
+      </template>
+      <template v-else>
+        <div class="anim-vault__shield">
+          <span class="anim-vault__lock" />
+          <span class="anim-vault__glow" />
+        </div>
+      </template>
+    </div>
+
+    <div v-else class="anim anim-fallback">
+      <div class="anim-fallback__grid">
+        <span v-for="n in 9" :key="n" :style="{ '--i': n }" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -2025,6 +2233,41 @@ defineProps({
   width: 64px;
 }
 
+/* Spectra */
+.anim-spectra {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  gap: 4px;
+}
+
+.anim-spectra__wave {
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #f472b6, #a78bfa, #22d3ee);
+  animation: spectra-wave 1.2s ease-in-out infinite;
+}
+
+.anim-spectra__wave--1 { height: 24px; animation-delay: 0s; }
+.anim-spectra__wave--2 { height: 40px; animation-delay: 0.15s; }
+.anim-spectra__wave--3 { height: 28px; animation-delay: 0.3s; }
+
+@keyframes spectra-wave {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+.anim-spectra__icons {
+  position: absolute;
+  bottom: 4px;
+  display: flex;
+  gap: 6px;
+  font-size: 0.625rem;
+  opacity: 0.85;
+}
+
 /* Batch */
 .anim-batch {
   display: grid;
@@ -2859,6 +3102,462 @@ defineProps({
   gap: 6px;
 }
 
+/* Persona */
+.anim-persona {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-persona__hub {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-persona__core {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(124, 77, 255, 0.25);
+  border: 1.5px solid rgba(192, 132, 252, 0.65);
+  animation: node-pulse 2.5s ease infinite;
+  z-index: 1;
+}
+
+.anim-persona__core--sm {
+  width: 18px;
+  height: 18px;
+}
+
+.anim-persona__modality {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  box-shadow: 0 0 8px rgba(61, 90, 254, 0.45);
+  animation: persona-orbit 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+.anim-persona__modality:nth-child(2) { top: 4px; left: 50%; transform: translateX(-50%); }
+.anim-persona__modality:nth-child(3) { right: 4px; top: 50%; transform: translateY(-50%); }
+.anim-persona__modality:nth-child(4) { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.anim-persona__modality:nth-child(5) { left: 4px; top: 50%; transform: translateY(-50%); }
+
+.anim-persona__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.anim-persona__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 56px;
+}
+
+.anim-persona__fields span {
+  display: block;
+  height: 5px;
+  border-radius: 2px;
+  background: var(--surface-container-high);
+  animation: grow-bar 2s ease infinite;
+  transform-origin: left center;
+}
+
+.anim-persona__fields span:nth-child(1) { width: 100%; }
+.anim-persona__fields span:nth-child(2) { width: 75%; animation-delay: 0.15s; }
+.anim-persona__fields span:nth-child(3) { width: 55%; animation-delay: 0.3s; }
+
+/* INsight */
+.anim-insight {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-insight__loop {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(124, 77, 255, 0.35);
+}
+
+.anim-insight__loop--active {
+  animation: spin-slow 8s linear infinite;
+}
+
+.anim-insight__node {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  animation: node-pulse 2s ease infinite;
+  animation-delay: calc(var(--i) * 0.15s);
+}
+
+.anim-insight__node:nth-child(1) { top: -3px; left: 50%; transform: translateX(-50%); }
+.anim-insight__node:nth-child(2) { top: 12px; right: -2px; }
+.anim-insight__node:nth-child(3) { bottom: 8px; right: 4px; }
+.anim-insight__node:nth-child(4) { bottom: 8px; left: 4px; }
+.anim-insight__node:nth-child(5) { top: 12px; left: -2px; }
+
+.anim-insight__pulse {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: rgba(124, 77, 255, 0.2);
+  animation: hub-pulse 2s ease infinite;
+}
+
+.anim-insight__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.anim-insight__badge {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: #34d399;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  animation: pulse-text 2s ease infinite;
+}
+
+.anim-insight__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 64px;
+}
+
+.anim-insight__bars span {
+  display: block;
+  height: 5px;
+  border-radius: 2px;
+  background: var(--surface-container-high);
+  animation: grow-bar 2s ease infinite;
+  transform-origin: left center;
+}
+
+.anim-insight__bars span:nth-child(1) { width: 90%; }
+.anim-insight__bars span:nth-child(2) { width: 72%; animation-delay: 0.15s; }
+.anim-insight__bars span:nth-child(3) { width: 85%; animation-delay: 0.3s; }
+
+/* Chronos */
+.anim-chronos {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 12px;
+}
+
+.anim-chronos__track {
+  position: relative;
+  width: 100%;
+  max-width: 140px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.anim-chronos__track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(61, 90, 254, 0.25), rgba(251, 191, 36, 0.45));
+  transform: translateY(-50%);
+}
+
+.anim-chronos__event {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: chronos-pop 2.5s ease infinite;
+}
+
+.anim-chronos__event--1 { left: 8%; animation-delay: 0s; }
+.anim-chronos__event--2 { left: 28%; animation-delay: 0.2s; }
+.anim-chronos__event--3 { left: 50%; animation-delay: 0.4s; }
+.anim-chronos__event--4 { left: 72%; animation-delay: 0.6s; }
+.anim-chronos__event--5 { left: 92%; animation-delay: 0.8s; background: var(--accent-warm); }
+
+.anim-chronos__highlight {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 14px;
+  background: var(--accent-warm);
+  transform: translateX(-50%);
+  animation: fade-up 2s ease infinite;
+}
+
+/* Flow */
+.anim-flow {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-flow__pipeline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.anim-flow__step {
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.anim-flow__step--active {
+  color: var(--on-surface);
+  border-color: rgba(61, 90, 254, 0.45);
+  background: rgba(61, 90, 254, 0.12);
+  animation: pulse-text 2s ease infinite;
+}
+
+.anim-flow__step--done {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.anim-flow__arrow {
+  font-size: 0.625rem;
+  color: var(--primary-container);
+}
+
+.anim-flow__dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  top: 50%;
+  left: 28%;
+  transform: translateY(-50%);
+  animation: flow-travel 2s ease-in-out infinite;
+}
+
+.anim-flow__dot--travel {
+  left: 20%;
+}
+
+/* Command */
+.anim-command {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-command__board {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 88px;
+}
+
+.anim-command__board--wide {
+  width: 100px;
+}
+
+.anim-command__case {
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--outline-variant);
+  position: relative;
+  animation: fade-up 2s ease infinite;
+  animation-delay: calc(var(--i, 1) * 0.15s);
+}
+
+.anim-command__case--done {
+  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+.anim-command__status {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  transform: translateY(-50%);
+  animation: hub-pulse 2s ease infinite;
+}
+
+.anim-command__case--done .anim-command__status {
+  background: #34d399;
+}
+
+/* Vault */
+.anim-vault {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-vault__shield {
+  position: relative;
+  width: 44px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anim-vault__shield::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1.5px solid rgba(52, 211, 153, 0.35);
+  border-radius: 8px 8px 12px 12px;
+  clip-path: polygon(50% 0%, 100% 18%, 100% 100%, 0% 100%, 0% 18%);
+}
+
+.anim-vault__shield--sm {
+  width: 36px;
+  height: 40px;
+}
+
+.anim-vault__lock {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 10px;
+  border-radius: 2px;
+  background: #34d399;
+  margin-top: 8px;
+}
+
+.anim-vault__lock::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 6px;
+  border: 2px solid #34d399;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+
+.anim-vault__glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 12px;
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  animation: hub-pulse 2s ease infinite;
+}
+
+.anim-vault__access {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.anim-vault__roles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 40px;
+}
+
+.anim-vault__roles span {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-container-high);
+  animation: grow-bar 2s ease infinite;
+  transform-origin: left center;
+}
+
+.anim-vault__roles span:nth-child(1) { width: 100%; }
+.anim-vault__roles span:nth-child(2) { width: 70%; animation-delay: 0.15s; }
+.anim-vault__roles span:nth-child(3) { width: 85%; animation-delay: 0.3s; }
+
+.anim-vault__verified {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.anim-vault__check {
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #34d399;
+  margin-top: 10px;
+}
+
+.anim-vault__hold {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--accent-warm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+/* Fallback */
+.anim-fallback__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 8px;
+}
+
+.anim-fallback__grid span {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: rgba(61, 90, 254, 0.15);
+  border: 1px solid rgba(61, 90, 254, 0.25);
+  animation: mesh-pulse 2s ease infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
 /* Keyframes */
 @keyframes lens-blink {
   0%, 100% { opacity: 1; }
@@ -3003,6 +3702,23 @@ defineProps({
 @keyframes disk-progress {
   0%, 100% { transform: translateX(-100%); width: 35%; }
   50% { transform: translateX(120%); width: 45%; }
+}
+
+@keyframes persona-orbit {
+  0%, 100% { opacity: 0.55; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes chronos-pop {
+  0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  50%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes flow-travel {
+  0% { left: 18%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: 78%; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

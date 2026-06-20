@@ -4,20 +4,26 @@
       <SiteLogo @click="onLogoClick" />
 
       <nav class="nav" :class="{ 'nav--open': menuOpen }" aria-label="Main">
+        <MegaMenu
+          v-for="item in megaNavItems"
+          :key="item.id"
+          :label="item.label"
+          :menu="MEGA_MENUS[item.megaKey]"
+        />
         <router-link
-          v-for="item in navItems"
-          :key="item.name"
+          v-for="item in linkNavItems"
+          :key="item.id"
           :to="item.to"
           class="nav__link"
-          @click="onNavClick(item, $event)"
+          @click="menuOpen = false"
         >
           {{ item.label }}
         </router-link>
       </nav>
 
       <div class="header__actions">
-        <CtaButton :href="DEMO_URL" variant="primary" class="header__cta">
-          Book demo
+        <CtaButton href="/demo?intent=demo" variant="primary" class="header__cta">
+          Request demo
         </CtaButton>
         <button
           class="menu-toggle"
@@ -31,6 +37,30 @@
         </button>
       </div>
     </div>
+
+    <div v-if="menuOpen" class="mobile-nav">
+      <div v-for="item in megaNavItems" :key="item.id" class="mobile-nav__group">
+        <p class="mobile-nav__label">{{ item.label }}</p>
+        <router-link
+          v-for="link in flatMegaLinks(item.megaKey)"
+          :key="link.to"
+          :to="link.to"
+          class="mobile-nav__link"
+          @click="menuOpen = false"
+        >
+          {{ link.label }}
+        </router-link>
+      </div>
+      <router-link
+        v-for="item in linkNavItems"
+        :key="item.id"
+        :to="item.to"
+        class="mobile-nav__link"
+        @click="menuOpen = false"
+      >
+        {{ item.label }}
+      </router-link>
+    </div>
   </header>
 </template>
 
@@ -39,25 +69,26 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import CtaButton from './CtaButton.vue'
 import SiteLogo from './SiteLogo.vue'
-import { DEMO_URL } from '@/config.js'
-import { revealInContainer } from '@/composables/useScrollReveal.js'
+import MegaMenu from './MegaMenu.vue'
+import { PRIMARY_NAV, MEGA_MENUS } from '@/content/navigation.js'
 
 const route = useRoute()
 const router = useRouter()
 const scrolled = ref(false)
 const menuOpen = ref(false)
 
-const navItems = [
-  { name: 'home', label: 'Home', to: '/', hash: '#hero' },
-  { name: 'capabilities', label: 'What it does', to: '/capabilities', hash: '#capabilities' },
-  { name: 'features', label: 'Features', to: '/features' },
-  { name: 'coverage', label: 'Coverage', to: '/coverage' },
-  { name: 'architecture', label: 'How it works', to: '/architecture', hash: '#architecture' },
-  { name: 'security', label: 'Trust', to: '/security', hash: '#security' },
-  { name: 'demo', label: 'Live demo', to: '/demo', hash: '#demo' },
-]
+const megaNavItems = PRIMARY_NAV.filter((i) => i.type === 'mega')
+const linkNavItems = PRIMARY_NAV.filter((i) => i.to)
 
 const isHome = computed(() => route.name === 'home')
+
+function flatMegaLinks(megaKey) {
+  const menu = MEGA_MENUS[megaKey]
+  if (menu.columns) {
+    return menu.columns.flatMap((col) => col.links)
+  }
+  return menu.links ?? []
+}
 
 function onScroll() {
   scrolled.value = window.scrollY > 8
@@ -69,26 +100,6 @@ function onLogoClick(e) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   menuOpen.value = false
-}
-
-function onNavClick(item, e) {
-  menuOpen.value = false
-
-  if (isHome.value && item.hash) {
-    e.preventDefault()
-    const el = document.querySelector(item.hash)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      router.replace({ hash: item.hash })
-      revealInContainer(el)
-      setTimeout(() => revealInContainer(el), 450)
-    } else if (item.name === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-      router.replace({ hash: '' })
-    } else {
-      router.push(item.to)
-    }
-  }
 }
 
 onMounted(() => {
@@ -125,17 +136,13 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  gap: 1.5rem;
-}
-
-.logo {
-  flex-shrink: 0;
+  gap: 1rem;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.125rem;
 }
 
 .nav__link {
@@ -177,10 +184,21 @@ onUnmounted(() => {
   height: 2px;
   background: var(--on-surface);
   border-radius: 1px;
-  transition: transform 0.2s ease;
 }
 
-@media (max-width: 768px) {
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .nav :deep(.mega-menu) {
+    display: none;
+  }
+
+  .nav__link {
+    display: none;
+  }
+
   .menu-toggle {
     display: flex;
   }
@@ -189,30 +207,37 @@ onUnmounted(() => {
     display: none;
   }
 
-  .nav {
+  .mobile-nav {
+    display: block;
     position: fixed;
     top: var(--header-height);
     left: 0;
     right: 0;
-    flex-direction: column;
-    align-items: stretch;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
     padding: 1rem;
     background: var(--surface-container);
     border-bottom: 1px solid var(--outline-variant);
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
-  .nav--open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+  .mobile-nav__group {
+    margin-bottom: 1rem;
   }
 
-  .nav__link {
-    padding: 0.875rem 1rem;
+  .mobile-nav__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-warm);
+    margin-bottom: 0.375rem;
+  }
+
+  .mobile-nav__link {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--on-surface-variant);
   }
 }
 </style>

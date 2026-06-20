@@ -11,6 +11,11 @@
   --outline-variant: rgba(255, 255, 255, 0.12);
   --secondary: #7c4dff;
   --accent-warm: #fbbf24;
+  --family-foundation: #34d399;
+  --family-analysis: #a78bfa;
+  --family-dfir: #fb923c;
+  --family-intelligence: #7c4dff;
+  --family-operations: #94a3b8;
   --font-headline: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --max-width: 1200px;

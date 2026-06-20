@@ -14,18 +14,18 @@ export const COMPARISON = {
   after: {
     title: `With ${PRODUCT_NAME}`,
     items: [
-      'One forensic OS — acquire, extract, correlate, and query',
-      'Hash-first Chain of Custody on every acquisition',
-      'Documents, Volume, Prism, and Lens — all local, all cited',
+      'Six flagship products — Volume, Prism, Iris, Spectra, Molecules, Lens',
+      'Five OS layers from acquisition through correlation — not a flat tool grid',
+      'Hash-first Chain of Custody on every acquisition via Volume',
       'Molecules builds entity, comms, and timeline graphs automatically',
-      'Stakeholder-ready briefings in a single session',
+      'Stakeholder-ready briefings in a single session with Lens',
     ],
   },
 }
 
 export const OUTCOME_STATS = [
-  { value: 21, suffix: '+', label: 'Evidence categories covered' },
-  { value: 0, suffix: '', label: 'Cloud uploads required' },
-  { value: 1, suffix: '', label: 'Forensic OS for your team' },
+  { value: 6, suffix: '', label: 'Flagship products' },
+  { value: 5, suffix: '', label: 'OS layers' },
+  { value: 1, suffix: '', label: 'Forensic operating system' },
   { value: 100, suffix: '%', label: 'On infrastructure you control' },
 ]

@@ -1,23 +1,23 @@
 export const HOW_IT_WORKS = [
   {
     step: 1,
-    title: 'Preserve with proof',
+    title: 'Acquire and preserve',
     description:
-      'Chain of Custody creates a forensic copy and cryptographic hash first — then Volume, RAM Dumper, and acquisition tools mount verified evidence.',
+      'Obsedian Volume handles chain of custody, disk and mobile imaging, hash verification, and evidence vault — integrity first, every time.',
     visual: 'upload',
   },
   {
     step: 2,
-    title: 'Extract from every source',
+    title: 'Extract and analyze',
     description:
-      'Prism, Iris, Documents, EDR, IPDR, and every analysis engine run on your infrastructure — disk, mobile, memory, network, and media.',
+      'Artifact extraction plus Prism, Iris, and Spectra engines — parse file systems, biometrics, media, and documents on your infrastructure.',
     visual: 'connect',
   },
   {
     step: 3,
-    title: 'Correlate and act',
+    title: 'Correlate and investigate',
     description:
-      'Molecules builds the evidence graph. Lens answers cross-modal questions. Every finding cited, every step logged.',
+      'Molecules builds the evidence graph. Lens answers cross-modal questions. Five layers, six products, one forensic OS.',
     visual: 'act',
   },
 ]

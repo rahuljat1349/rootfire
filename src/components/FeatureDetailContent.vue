@@ -4,8 +4,12 @@
       <div class="feature-content__hero-copy">
         <span class="feature-content__category">{{ categoryLabel }}</span>
         <span v-if="feature.beta" class="feature-content__badge">New</span>
-        <h1 v-if="isPageTitle" class="feature-content__title">{{ feature.label }}</h1>
-        <h2 v-else class="feature-content__title">{{ feature.label }}</h2>
+        <h1 v-if="isPageTitle" class="feature-content__title">
+          <ProductTitle :product-id="feature.id" :label="feature.label" size="lg" />
+        </h1>
+        <h2 v-else class="feature-content__title">
+          <ProductTitle :product-id="feature.id" :label="feature.label" size="lg" />
+        </h2>
         <p class="feature-content__tagline">{{ details.tagline }}</p>
         <p class="feature-content__outcome">{{ feature.outcome }}</p>
         <router-link
@@ -20,6 +24,12 @@
         <FeatureAnimation :type="feature.animation" size="large" />
       </div>
     </header>
+
+    <ProductCapabilityList
+      v-if="feature.flagship"
+      :product-id="feature.productId ?? feature.id"
+      class="reveal"
+    />
 
     <section class="feature-content__overview reveal">
       <h3 class="feature-content__section-title">What it does</h3>
@@ -80,7 +90,10 @@ import { computed } from 'vue'
 import FeatureAnimation from '@/components/FeatureAnimation.vue'
 import ScanTypeCard from '@/components/ScanTypeCard.vue'
 import CtaButton from '@/components/CtaButton.vue'
+import ProductCapabilityList from '@/components/ProductCapabilityList.vue'
+import ProductTitle from '@/components/ProductTitle.vue'
 import { SCAN_CATEGORIES } from '@/content/scanTypes.js'
+import { getFlagshipById } from '@/content/flagshipProducts.js'
 import { DEMO_URL } from '@/config.js'
 
 const props = defineProps({
@@ -93,7 +106,13 @@ const props = defineProps({
   isPageTitle: { type: Boolean, default: false },
 })
 
-const categoryLabel = computed(() => SCAN_CATEGORIES[props.feature.category])
+const categoryLabel = computed(() => {
+  if (props.feature.flagship) {
+    const flagship = getFlagshipById(props.feature.productId ?? props.feature.id)
+    return flagship?.role ?? SCAN_CATEGORIES[props.feature.category]
+  }
+  return SCAN_CATEGORIES[props.feature.category]
+})
 </script>
 
 <style scoped>

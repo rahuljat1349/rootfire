@@ -19,10 +19,10 @@
             <router-link
               v-for="toolId in cat.toolIds"
               :key="toolId"
-              :to="`/features/${toolId}`"
+              :to="productLink(toolId)"
               class="coverage-card__tool"
             >
-              {{ getFeatureById(toolId)?.label ?? toolId }}
+              {{ productLabel(toolId) }}
             </router-link>
           </div>
         </article>
@@ -32,8 +32,8 @@
         <h2>See the full platform</h2>
         <p>Browse every module with step-by-step guides, or book a live demo.</p>
         <div class="coverage-page__cta-actions">
-          <router-link to="/features" class="coverage-page__link">All features &rarr;</router-link>
-          <CtaButton :href="DEMO_URL" variant="primary">Book a live demo</CtaButton>
+          <router-link to="/products" class="coverage-page__link">All products &rarr;</router-link>
+          <CtaButton href="/demo?intent=demo" variant="primary">Request demo</CtaButton>
         </div>
       </div>
     </div>
@@ -43,11 +43,23 @@
 <script setup>
 import CtaButton from '@/components/CtaButton.vue'
 import { EVIDENCE_COVERAGE, COVERAGE_INTRO } from '@/content/evidenceCoverage.js'
-import { getFeatureById } from '@/content/scanTypes.js'
-import { DEMO_URL } from '@/config.js'
+import {
+  LEGACY_FEATURE_REDIRECTS,
+  getProductBySlug,
+} from '@/content/productEcosystem.js'
 import { useScrollReveal } from '@/composables/useScrollReveal.js'
 
 useScrollReveal()
+
+function productLink(toolId) {
+  const slug = LEGACY_FEATURE_REDIRECTS[toolId] ?? toolId
+  return `/products/${slug}`
+}
+
+function productLabel(toolId) {
+  const slug = LEGACY_FEATURE_REDIRECTS[toolId] ?? toolId
+  return getProductBySlug(slug)?.shortName ?? toolId
+}
 </script>
 
 <style scoped>

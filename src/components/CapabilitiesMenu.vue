@@ -1,28 +1,31 @@
 <template>
-  <nav class="cap-menu" aria-label="All capabilities">
+  <nav class="cap-menu" aria-label="Flagship products">
     <router-link to="/capabilities" class="cap-menu__overview">
-      Capability overview
+      Platform overview
     </router-link>
 
-    <div v-for="category in SCAN_CATEGORY_ORDER" :key="category" class="cap-menu__group">
-      <p class="cap-menu__group-label">{{ SCAN_CATEGORIES[category] }}</p>
-      <ul class="cap-menu__list">
-        <li v-for="feature in typesByCategory[category]" :key="feature.id">
+    <div v-for="product in FLAGSHIP_PRODUCTS" :key="product.id" class="cap-menu__group">
+      <router-link
+        :to="{ name: 'features-browse', hash: `#${product.id}` }"
+        class="cap-menu__product"
+        :class="{ 'cap-menu__product--active': activeId === product.id }"
+      >
+        <span class="cap-menu__icon" aria-hidden="true">
+          <ScanTypeIcon :name="product.icon" />
+        </span>
+        <span class="cap-menu__label">
+          <ProductTitle :product-id="product.id" :label="product.label" size="sm" />
+        </span>
+      </router-link>
+
+      <ul v-if="featuresForProduct(product.id).length" class="cap-menu__list">
+        <li v-for="feature in featuresForProduct(product.id)" :key="feature.id">
           <router-link
             :to="{ name: 'features-browse', hash: `#${feature.id}` }"
             class="cap-menu__link"
             :class="{ 'cap-menu__link--active': activeId === feature.id }"
           >
-            <span class="cap-menu__icon" aria-hidden="true">
-              <ScanTypeIcon :name="feature.icon" />
-            </span>
-            <span class="cap-menu__label">
-              <LensLogo v-if="feature.id === 'lens'" size="sm" />
-              <MoleculesLogo v-else-if="feature.id === 'molecules'" size="sm" />
-              <PrismLogo v-else-if="feature.id === 'prism'" size="sm" />
-              <IrisLogo v-else-if="feature.id === 'iris'" size="sm" />
-              <template v-else>{{ feature.label }}</template>
-            </span>
+            {{ feature.label }}
             <span v-if="feature.beta" class="cap-menu__beta">New</span>
           </router-link>
         </li>
@@ -35,26 +38,12 @@
 import { computed, inject, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import ScanTypeIcon from './ScanTypeIcon.vue'
-import LensLogo from './LensLogo.vue'
-import MoleculesLogo from './MoleculesLogo.vue'
-import PrismLogo from './PrismLogo.vue'
-import IrisLogo from './IrisLogo.vue'
-import {
-  SCAN_TYPES,
-  SCAN_CATEGORIES,
-  SCAN_CATEGORY_ORDER,
-} from '@/content/scanTypes.js'
+import ProductTitle from './ProductTitle.vue'
+import { FLAGSHIP_PRODUCTS } from '@/content/flagshipProducts.js'
+import { getFeaturesForProduct } from '@/content/scanTypes.js'
 
 const route = useRoute()
 const activeFeatureId = inject('activeFeatureId', null)
-
-const typesByCategory = computed(() => {
-  const map = {}
-  for (const cat of SCAN_CATEGORY_ORDER) {
-    map[cat] = SCAN_TYPES.filter((t) => t.category === cat)
-  }
-  return map
-})
 
 const activeId = computed(() => {
   if (activeFeatureId?.value) return activeFeatureId.value
@@ -64,10 +53,14 @@ const activeId = computed(() => {
   return null
 })
 
+function featuresForProduct(productId) {
+  return getFeaturesForProduct(productId)
+}
+
 watch(activeId, () => {
   nextTick(() => {
     document
-      .querySelector('.cap-menu__link--active')
+      .querySelector('.cap-menu__product--active, .cap-menu__link--active')
       ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
   })
 })
@@ -97,36 +90,48 @@ watch(activeId, () => {
   border-color: rgba(61, 90, 254, 0.35);
 }
 
-.cap-menu__overview--active {
-  color: var(--on-surface);
-  border-color: rgba(61, 90, 254, 0.45);
-  background: rgba(61, 90, 254, 0.08);
-}
-
-.cap-menu__group-label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent-warm);
-  margin-bottom: 0.375rem;
-  padding: 0 0.75rem;
-}
-
-.cap-menu__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.cap-menu__link {
+.cap-menu__product {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
   font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.cap-menu__product:hover {
+  color: var(--on-surface);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cap-menu__product--active {
+  color: var(--on-surface);
+  background: rgba(61, 90, 254, 0.1);
+  box-shadow: inset 2px 0 0 var(--primary-container);
+}
+
+.cap-menu__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  margin-top: 0.25rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--outline-variant);
+  margin-left: 1.25rem;
+}
+
+.cap-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--on-surface-variant);
   transition: color 0.15s ease, background 0.15s ease;
@@ -134,13 +139,12 @@ watch(activeId, () => {
 
 .cap-menu__link:hover {
   color: var(--on-surface);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .cap-menu__link--active {
   color: var(--on-surface);
-  background: rgba(61, 90, 254, 0.12);
-  box-shadow: inset 2px 0 0 var(--primary-container);
+  background: rgba(61, 90, 254, 0.08);
 }
 
 .cap-menu__icon {
