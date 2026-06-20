@@ -1,6 +1,6 @@
 # Obsedian Forensics — Marketing Site
 
-Enterprise marketing site for **Obsedian Forensics**, a unified forensic intelligence platform. Built with Vue 3 and Vite, the site presents the product ecosystem, platform architecture, solutions, industries, and trust/compliance story.
+Enterprise marketing site for **Obsedian Forensics**, a unified forensic intelligence platform. Built with Vue 3 and Vite, the site presents the full product ecosystem (24 products across five families), platform architecture, solutions, industries, and trust/compliance story.
 
 ## Tech stack
 
@@ -37,18 +37,19 @@ The dev server starts at `http://localhost:5173` by default.
 
 | Path | Page |
 |------|------|
-| `/` | Homepage — hero, investigation journey, flagship products, learning loop |
-| `/products` | Product ecosystem hub |
-| `/products/:slug` | Individual product detail pages |
+| `/` | Homepage — hero, journey, flagship products, Intelligence layer, security, demo |
+| `/products` | Product ecosystem hub (five families) |
+| `/products/:slug` | Product detail with animated feature preview |
 | `/solutions` | Solutions hub |
 | `/solutions/:slug` | Solution detail pages |
 | `/industries` | Industries hub |
 | `/industries/:slug` | Industry detail pages |
-| `/platform` | Platform overview — layers, ecosystem diagram, INsight loop |
+| `/platform` | Platform overview — layers, ecosystem diagram, Intelligence layer |
 | `/trust` | Security, compliance, and trust |
 | `/about` | Company |
 | `/contact` | Contact form |
 | `/demo` | Demo request |
+| `/coverage` | Evidence coverage (lazy-loaded) |
 
 Legacy paths (`/features/*`, `/capabilities`, `/security`, `/architecture`) redirect to the new routes.
 
@@ -56,7 +57,7 @@ Legacy paths (`/features/*`, `/capabilities`, `/security`, `/architecture`) redi
 
 ```
 src/
-├── components/     # Reusable UI sections and product logos
+├── components/     # UI sections, logos, FeatureAnimation, ModuleLogo
 ├── composables/    # Scroll reveal, count-up, scroll spy hooks
 ├── content/        # Marketing copy and data (products, solutions, nav, FAQ, etc.)
 ├── layouts/        # App shell (header, footer, main outlet)
@@ -71,9 +72,10 @@ src/
 
 Most marketing copy lives in `src/content/` rather than in Vue templates:
 
-- **`productEcosystem.js`** — Product families, slugs, highlights, journey tags, legacy feature redirects
+- **`productEcosystem.js`** — 24 products, five families, journey steps, `INTELLIGENCE_LAYER`, `INSIGHT_LEARNING_LOOP`, legacy redirects
 - **`solutions.js`** / **`industries.js`** — Solution and vertical pages
 - **`navigation.js`** — Mega-menu and footer links
+- **`platformLayers.js`** — Platform layer capabilities grid
 - **`config.js`** — Product names (`Obsedian Lens`, `Obsedian Molecules`, etc.) and CTA URLs
 
 Brand constants like `PRODUCT_NAME` and `LENS_NAME` are imported from `config.js` so names stay consistent across the site.
@@ -82,13 +84,27 @@ Brand constants like `PRODUCT_NAME` and `LENS_NAME` are imported from `config.js
 
 The site describes Obsedian as a five-layer investigation platform:
 
-1. **Foundation** — Evidence acquisition and preservation (e.g. Volume)
-2. **Analysis Engines** — Modality intelligence (Prism, Iris, Spectra, Echo, …)
-3. **DFIR & Cyber** — Endpoint and network forensics
-4. **Intelligence Layer** — Persona (subject profiles), Molecules (correlation), Lens (copilot), INsight (learning loop)
-5. **Operations** — Workflow, collaboration, and reporting
+| Layer | Role | Example products |
+|-------|------|------------------|
+| **Foundation** | Acquire and preserve evidence | Chain, Vault, Volume, Pulse, Scout |
+| **Analysis Engines** | Modality intelligence | Prism, Iris, Echo, Spectra, Motion, Live, Ridge, Folio |
+| **DFIR & Cyber** | Endpoint and network forensics | Sentinel, Nexus, Phantom |
+| **Intelligence Layer** | Correlate, investigate, learn | Persona, Molecules, Chronos, Lens, INsight |
+| **Operations** | Workflow and case management | Flow, Review, Brief, Command |
 
-Product logos live in `src/components/` (e.g. `PrismLogo.vue`, `LensLogo.vue`).
+Six products are flagged as **hero products** (Volume, Prism, Spectra, Molecules, Lens, Command). **Persona** and **INsight** are marked `comingSoon: true`.
+
+## Logos and animations
+
+Product branding is rendered through `ProductTitle.vue`:
+
+- **Dedicated logos** — Prism, Iris, Spectra, Volume, Molecules, Lens, Persona, INsight (`*Logo.vue` components with SVG animations)
+- **Module logos** — Chain, Vault, Pulse, Scout, Echo, Motion, Live, Ridge, Folio, Sentinel, Nexus, Phantom, Chronos, Flow, Review, Brief, Command (`ModuleLogo.vue` + `moduleLogoMeta.js`)
+- **Fallback** — `GenericProductLogo.vue` for anything unmatched
+
+Product cards and detail pages use **`FeatureAnimation.vue`** — per-product animated previews (biometrics, network hub, learning loop, workflow pipeline, etc.). Each product’s `animation` field in `productEcosystem.js` selects the animation type.
+
+The homepage **Active intelligence** section (`LearningLoopSection.vue`) animates the full Intelligence layer pipeline (Persona → Molecules → Chronos → Lens → INsight) with auto-cycling highlights and the INsight learning-loop flywheel.
 
 ## Build output
 
