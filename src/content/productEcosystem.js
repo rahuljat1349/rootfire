@@ -1,5 +1,14 @@
 /** Obsedian product ecosystem — product families for marketing pages. */
 
+/** Intelligence layer — subject → graph → timeline → copilot → learning loop */
+export const INTELLIGENCE_LAYER = [
+  { id: 'persona', slug: 'persona', label: 'Persona', shortRole: 'Subject profiles' },
+  { id: 'molecules', slug: 'molecules', label: 'Molecules', shortRole: 'Knowledge graph' },
+  { id: 'chronos', slug: 'chronos', label: 'Chronos', shortRole: 'Timelines' },
+  { id: 'lens', slug: 'lens', label: 'Lens', shortRole: 'Investigation copilot' },
+  { id: 'insight', slug: 'insight', label: 'INsight', shortRole: 'Learning loop' },
+]
+
 /** Active intelligence learning loop — powered by Obsedian INsight */
 export const INSIGHT_LEARNING_LOOP = [
   { id: 'evidence', label: 'Evidence' },
@@ -623,6 +632,10 @@ export function getProductBySlug(slug) {
 
 export function getProductsByFamily(familyId) {
   return PRODUCTS.filter((p) => p.family === familyId)
+}
+
+export function getIntelligenceLayerProducts() {
+  return INTELLIGENCE_LAYER.map(({ slug }) => getProductBySlug(slug)).filter(Boolean)
 }
 
 export function getHeroProducts() {
