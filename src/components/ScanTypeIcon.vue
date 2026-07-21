@@ -101,6 +101,21 @@
     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
     <path d="M12 4V2M12 22v-2M4 12H2M22 12h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
+  <svg v-else-if="name === 'firewolf'" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M3 17 A9 9 0 0 1 21 17" stroke="#f97316" stroke-width="1.25" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.7"/>
+    <path d="M8 19 C8 16 9.5 14 10 11 C10.5 13.5 12 14.5 12 17 C12.5 14.5 14 13 14.5 10 C15.5 13 17 15.5 17 19 Z" fill="url(#fw-icon-flame)"/>
+    <path d="M7 19 L8 14 L10 12 L12 11 L14 12 L16 14 L17 19 Z" fill="#334155"/>
+    <path d="M10 12 L9.5 9 L11.5 11 Z" fill="#334155"/>
+    <path d="M14 12 L14.5 9 L12.5 11 Z" fill="#334155"/>
+    <circle cx="10" cy="13.5" r="1" fill="#ef4444"/>
+    <circle cx="14" cy="13.5" r="1" fill="#ef4444"/>
+    <defs>
+      <linearGradient id="fw-icon-flame" x1="8" y1="10" x2="17" y2="19">
+        <stop stop-color="#ef4444"/>
+        <stop offset="1" stop-color="#fb923c"/>
+      </linearGradient>
+    </defs>
+  </svg>
   <svg v-else-if="name === 'graph'" width="20" height="20" viewBox="0 0 24 24" fill="none">
     <circle cx="6" cy="18" r="2.5" stroke="currentColor" stroke-width="1.5"/>
     <circle cx="18" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>

@@ -65,6 +65,9 @@ export const FEATURE_EXPLAINERS = {
   graph: {
     steps: ['Evidence becomes graph nodes', 'Connections discovered automatically', 'Molecules shows the full picture'],
   },
+  firewolf: {
+    steps: ['Ingest transactions and KYC records', 'AI scores patterns and identity risk', 'Review fraud alerts with cited evidence'],
+  },
   spectra: {
     steps: ['Ingest image, video, or audio evidence', 'Engines extract artifacts and biometrics', 'Results feed Molecules and Lens'],
   },

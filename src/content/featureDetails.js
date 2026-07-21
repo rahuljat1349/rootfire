@@ -380,6 +380,31 @@ export const FEATURE_DETAILS = {
     ],
     idealFor: ['Rootkit investigation', 'Fileless malware hunts', 'Advanced persistent threat cases'],
   },
+  firewolf: {
+    tagline: 'Detect fraud across money movement, identity, and behavior.',
+    overview:
+      'Obsedian Firewolf is the fraud intelligence layer for transaction, KYC, and behavioral investigations. It correlates financial records, identity documents, network context, and linked entities to surface suspicious patterns with explainable reasoning investigators can validate.',
+    steps: [
+      {
+        title: 'Ingest transactions and identity evidence',
+        body: 'Bank records, payment events, statements, KYC documents, and linked communications are brought into one fraud workspace.',
+      },
+      {
+        title: 'Score patterns and connect entities',
+        body: 'Firewolf flags anomalies, AML typologies, duplicate identities, and suspicious account relationships across the Molecules graph.',
+      },
+      {
+        title: 'Explain the alert with evidence',
+        body: 'Investigators review why an alert fired, trace the timeline in Chronos, and move directly into reporting with cited records.',
+      },
+    ],
+    benefits: [
+      'One workflow for transaction, document, and identity fraud',
+      'Graph-based correlation for mule accounts and fraud rings',
+      'Explainable AI findings investigators can defend',
+    ],
+    idealFor: ['Transaction fraud detection', 'AML investigations', 'Identity and document fraud cases'],
+  },
   documents: {
     tagline: 'Every document type — search by meaning, not keywords.',
     overview:

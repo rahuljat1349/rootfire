@@ -18,7 +18,7 @@ export const SCAN_CATEGORY_TAGLINES = {
   analysis:
     'Branded engines for face, iris, media, and documents — powered by Prism, Iris, and Spectra.',
   dfir:
-    'Endpoint, memory, malware, network, and timeline forensics for threat hunters and IR teams.',
+    'Endpoint, memory, malware, network, fraud, and timeline forensics for threat hunters and investigators.',
   intelligence:
     'Correlate everything. Ask anything. See networks spreadsheets cannot show.',
 }
@@ -132,6 +132,18 @@ export const SCAN_TYPES = [
     productId: 'volume',
     beta: true,
     outcome: 'Stealth threat detection',
+  },
+  {
+    id: 'firewolf',
+    label: 'Obsedian Firewolf',
+    description:
+      'AI-powered fraud detection across transactions, ID documents, account behavior, and linked entities in one investigation workflow.',
+    icon: 'firewolf',
+    animation: 'firewolf',
+    category: 'dfir',
+    productId: 'firewolf',
+    beta: true,
+    outcome: 'AI fraud intelligence',
   },
   // Flagship — Obsedian Prism
   {

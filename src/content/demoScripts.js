@@ -50,7 +50,7 @@ export const DEMO_TOURS = [
       'Every layer — CoC, Volume, RAM, EDR, IPDR, biometrics, documents, Lens, and Molecules — in one continuous story.',
     highlights: [
       'Hash-first acquisition and Volume hub',
-      'DFIR — EDR, IPDR, rootkit and fileless detection',
+      'DFIR — EDR, IPDR, rootkit, fileless detection, and Firewolf fraud intelligence',
       'Full biometric and intelligence workflow',
       '21 evidence categories — see Coverage page',
     ],

@@ -566,6 +566,59 @@
       </template>
     </div>
 
+    <!-- Firewolf — fraud detection -->
+    <div v-else-if="type === 'firewolf'" class="anim anim-firewolf">
+      <template v-if="phase === 1">
+        <div class="anim-firewolf__ledger">
+          <span v-for="n in 4" :key="n" class="anim-firewolf__row" :style="{ '--i': n }" />
+        </div>
+        <span class="anim-step-label">Ingesting</span>
+      </template>
+      <template v-else-if="phase === 2">
+        <div class="anim-firewolf__ledger anim-firewolf__ledger--scan">
+          <span
+            v-for="n in 4"
+            :key="n"
+            class="anim-firewolf__row"
+            :class="{ 'anim-firewolf__row--flagged': n === 3 }"
+            :style="{ '--i': n }"
+          />
+          <span class="anim-firewolf__beam" />
+        </div>
+        <span class="anim-step-label">Scoring</span>
+      </template>
+      <template v-else-if="phase === 3">
+        <div class="anim-firewolf__alert">
+          <span class="anim-firewolf__alert-icon">!</span>
+          <span class="anim-firewolf__alert-text">Fraud</span>
+        </div>
+        <div class="anim-firewolf__ring">
+          <span class="anim-firewolf__acct anim-firewolf__acct--a" />
+          <span class="anim-firewolf__acct anim-firewolf__acct--b" />
+          <span class="anim-firewolf__acct anim-firewolf__acct--c anim-firewolf__acct--hot" />
+          <svg class="anim-firewolf__links" viewBox="0 0 100 60">
+            <line x1="20" y1="30" x2="50" y2="12" class="anim-firewolf__link" />
+            <line x1="50" y1="12" x2="80" y2="30" class="anim-firewolf__link" />
+            <line x1="20" y1="30" x2="80" y2="30" class="anim-firewolf__link anim-firewolf__link--hot" />
+          </svg>
+        </div>
+        <span class="anim-step-label">Alert</span>
+      </template>
+      <template v-else>
+        <div class="anim-firewolf__ledger anim-firewolf__ledger--scan">
+          <span
+            v-for="n in 4"
+            :key="n"
+            class="anim-firewolf__row"
+            :class="{ 'anim-firewolf__row--flagged': n === 3 }"
+            :style="{ '--i': n }"
+          />
+          <span class="anim-firewolf__beam" />
+        </div>
+        <div class="anim-firewolf__score">Risk 0.94</div>
+      </template>
+    </div>
+
     <!-- Chain of Custody -->
     <div v-else-if="type === 'coc'" class="anim anim-coc">
       <template v-if="phase === 1">
@@ -3719,6 +3772,181 @@ defineProps({
   20% { opacity: 1; }
   80% { opacity: 1; }
   100% { left: 78%; opacity: 0; }
+}
+
+/* Firewolf */
+.anim-firewolf {
+  width: 120px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.anim-firewolf__ledger {
+  position: relative;
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.anim-firewolf__ledger--scan {
+  overflow: hidden;
+}
+
+.anim-firewolf__row {
+  display: block;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(148, 163, 184, 0.35);
+  width: calc(55% + var(--i) * 8%);
+  animation: firewolf-row-in 2s ease infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+.anim-firewolf__row--flagged {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.45);
+}
+
+.anim-firewolf__beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, #f97316, transparent);
+  animation: firewolf-beam 2s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+.anim-firewolf__score {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #ef4444;
+  letter-spacing: 0.02em;
+}
+
+.anim-firewolf__alert {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  animation: firewolf-alert 1.5s ease infinite;
+}
+
+.anim-firewolf__alert-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.anim-firewolf__alert-text {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f97316;
+}
+
+.anim-firewolf__ring {
+  position: relative;
+  width: 100px;
+  height: 52px;
+}
+
+.anim-firewolf__acct {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.5);
+  border: 1.5px solid rgba(148, 163, 184, 0.7);
+  animation: firewolf-acct 2s ease infinite;
+}
+
+.anim-firewolf__acct--a { left: 14px; top: 26px; }
+.anim-firewolf__acct--b { left: 45px; top: 6px; animation-delay: 0.2s; }
+.anim-firewolf__acct--c { left: 76px; top: 26px; animation-delay: 0.4s; }
+
+.anim-firewolf__acct--hot {
+  background: #ef4444;
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25), 0 0 10px rgba(249, 115, 22, 0.4);
+}
+
+.anim-firewolf__links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.anim-firewolf__link {
+  stroke: rgba(148, 163, 184, 0.45);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  animation: firewolf-link 2s ease infinite;
+}
+
+.anim-firewolf__link--hot {
+  stroke: rgba(239, 68, 68, 0.75);
+  stroke-dasharray: none;
+  animation: firewolf-link-hot 1.5s ease infinite;
+}
+
+.feature-anim--step .anim-firewolf {
+  gap: 8px;
+}
+
+@keyframes firewolf-row-in {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes firewolf-beam {
+  0%, 100% { left: 0; opacity: 0.3; }
+  50% { left: calc(100% - 3px); opacity: 1; }
+}
+
+@keyframes firewolf-alert {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes firewolf-acct {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes firewolf-link {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes firewolf-link-hot {
+  0%, 100% { opacity: 0.6; stroke-width: 1.5; }
+  50% { opacity: 1; stroke-width: 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {

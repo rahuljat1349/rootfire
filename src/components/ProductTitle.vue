@@ -1,6 +1,7 @@
 <template>
   <LensLogo v-if="productId === 'lens'" :size="size" />
   <MoleculesLogo v-else-if="productId === 'molecules'" :size="size" />
+  <FirewolfLogo v-else-if="productId === 'firewolf'" :size="size" />
   <PrismLogo v-else-if="productId === 'prism'" :size="size" />
   <IrisLogo v-else-if="productId === 'iris'" :size="size" />
   <SpectraLogo v-else-if="productId === 'spectra'" :size="size" />
@@ -19,6 +20,7 @@
 <script setup>
 import LensLogo from './LensLogo.vue'
 import MoleculesLogo from './MoleculesLogo.vue'
+import FirewolfLogo from './FirewolfLogo.vue'
 import PrismLogo from './PrismLogo.vue'
 import IrisLogo from './IrisLogo.vue'
 import SpectraLogo from './SpectraLogo.vue'

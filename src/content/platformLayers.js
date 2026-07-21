@@ -26,7 +26,7 @@ export const PLATFORM_LAYERS = {
     id: 'dfir',
     number: 4,
     title: 'DFIR & Cyber',
-    tagline: 'Endpoint, memory, malware, network, and forensic workflows for threat hunters and IR teams.',
+    tagline: 'Endpoint, memory, malware, network, fraud, and forensic workflows for threat hunters and investigators.',
     productId: 'volume',
   },
   intelligence: {
@@ -136,6 +136,10 @@ export const LAYER_CAPABILITIES = {
     { id: 'process-analysis', label: 'Process Analysis', productId: 'volume', featureId: 'ram-dump' },
     { id: 'persistence', label: 'Persistence Detection', productId: 'volume', featureId: 'edr' },
     { id: 'lateral-movement', label: 'Lateral Movement Detection', productId: 'volume', featureId: 'edr' },
+    { id: 'transaction-fraud', label: 'Transaction Fraud Detection', productId: 'firewolf', featureId: 'firewolf' },
+    { id: 'aml-patterns', label: 'AML Pattern Analysis', productId: 'firewolf', featureId: 'firewolf' },
+    { id: 'id-fraud', label: 'Identity and KYC Fraud Detection', productId: 'firewolf', featureId: 'firewolf' },
+    { id: 'fraud-ring-analysis', label: 'Fraud Ring Analysis', productId: 'firewolf', featureId: 'firewolf' },
     { id: 'timeline-reconstruction', label: 'Timeline Reconstruction', productId: 'molecules', featureId: 'molecules' },
   ],
   intelligence: [
