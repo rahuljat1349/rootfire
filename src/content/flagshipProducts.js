@@ -45,11 +45,11 @@ export const FLAGSHIP_PRODUCTS = [
     shortName: 'Spectra',
     role: 'Media Intelligence',
     description:
-      'Image, video, audio, and fingerprint analysis — EXIF to PRNU, multi-speaker diarization, CCTV analytics, object tracking, and batch media processing in one engine.',
+      'Image, video, audio, and fingerprint analysis — EXIF to PRNU, promptable object detection and segmentation, multi-speaker diarization, audio isolation, CCTV analytics, and batch media processing in one engine.',
     icon: 'spectra',
     animation: 'spectra',
     layers: [3],
-    competitorNote: 'Unified media analysis — image, video, and audio together.',
+    competitorNote: 'Unified media analysis — promptable segmentation across image, video, and audio.',
   },
   {
     id: 'molecules',

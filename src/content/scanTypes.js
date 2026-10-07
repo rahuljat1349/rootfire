@@ -16,7 +16,7 @@ export const SCAN_CATEGORY_TAGLINES = {
   extraction:
     'Parse everything — file system, registry, browser, mobile, cloud, database, and IoT artifacts.',
   analysis:
-    'Branded engines for face, iris, media, and documents — powered by Prism, Iris, and Spectra.',
+    'Branded engines for face, iris, media, and documents — promptable object and audio segmentation included.',
   dfir:
     'Endpoint, memory, malware, network, fraud, and timeline forensics for threat hunters and investigators.',
   intelligence:
@@ -176,7 +176,7 @@ export const SCAN_TYPES = [
     id: 'spectra',
     label: 'Obsedian Spectra',
     description:
-      'Unified media intelligence — image artifacts, video and CCTV analytics, voice diarization, fingerprint matching, and batch processing.',
+      'Unified media intelligence — image artifacts, promptable object segmentation, video tracking, speaker diarization, audio isolation, fingerprint matching, and batch processing.',
     icon: 'spectra',
     animation: 'spectra',
     category: 'analysis',
@@ -189,46 +189,46 @@ export const SCAN_TYPES = [
     id: 'face-analyze',
     label: 'Photo analysis',
     description:
-      'EXIF, GPS, PRNU sensor fingerprint, editing traces, OCR, embeddings, and deepfake indicators from any image.',
+      'EXIF, GPS, PRNU, OCR, embeddings, deepfake indicators, and promptable object segmentation from any image.',
     icon: 'analyze',
     animation: 'analyze',
     category: 'analysis',
     productId: 'spectra',
-    outcome: 'Full image artifacts',
+    outcome: 'Artifacts + masks',
   },
   {
     id: 'video',
     label: 'Video processing',
     description:
-      'Detect every face and object in footage — match against your database and build a searchable timeline.',
+      'Prompt, click, or box-select any object — detect, segment, and track instances across footage with searchable timelines.',
     icon: 'video',
     animation: 'video',
     category: 'analysis',
     productId: 'spectra',
-    outcome: 'Faces and objects',
+    outcome: 'Detect · segment · track',
   },
   {
     id: 'voice',
     label: 'Voice analysis',
     description:
-      'Diarize multiple speakers, group voices, match to enrolled subjects, and surface relations through Molecules.',
+      'Diarize speakers and isolate any sound by text, visual, or time-span prompt — then match voices through Molecules.',
     icon: 'audio',
     animation: 'audio',
     category: 'analysis',
     productId: 'spectra',
     beta: true,
-    outcome: 'Multi-speaker intelligence',
+    outcome: 'Diarize & isolate',
   },
   {
     id: 'live-id',
     label: 'Live identification',
     description:
-      'Connect any CCTV or remote camera — detect and match faces, objects, and entities in every frame in real time.',
+      'Connect any CCTV or remote camera — prompt concepts or click objects to segment, track, and alert in real time.',
     icon: 'live',
     animation: 'live',
     category: 'analysis',
     productId: 'spectra',
-    outcome: 'Live multi-object matching',
+    outcome: 'Live promptable segmentation',
   },
   {
     id: 'fingerprint',

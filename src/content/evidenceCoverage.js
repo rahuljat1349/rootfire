@@ -39,22 +39,25 @@ export const EVIDENCE_COVERAGE = [
   {
     id: 'image',
     title: 'Image',
-    examples: 'EXIF, GPS, PRNU, sensor fingerprint, OCR, face embeddings, deepfake signals',
+    examples:
+      'EXIF, GPS, PRNU, sensor fingerprint, OCR, face embeddings, promptable object segmentation, deepfake signals',
     tools: ['Photo analysis', 'Obsedian Prism', 'Batch ingestion'],
     toolIds: ['face-analyze', 'prism', 'batch-detection'],
   },
   {
     id: 'video',
     title: 'Video',
-    examples: 'Codecs, scene changes, face tracking, object detection, OCR, audio extraction',
+    examples:
+      'Codecs, scene changes, face tracking, promptable object detection and segmentation, instance masks, click/box selection, OCR, audio extraction',
     tools: ['Video processing', 'Live identification'],
     toolIds: ['video', 'live-id'],
   },
   {
     id: 'audio',
     title: 'Audio',
-    examples: 'Speaker embeddings, MFCC, diarization, compression artifacts',
-    tools: ['Voice analysis'],
+    examples:
+      'Speaker embeddings, diarization, promptable audio segmentation, sound event isolation, voice matching, compression artifacts',
+    tools: ['Voice analysis', 'Obsedian Echo'],
     toolIds: ['voice'],
   },
   {
@@ -137,7 +140,8 @@ export const EVIDENCE_COVERAGE = [
   {
     id: 'ai-cv',
     title: 'AI / computer vision',
-    examples: 'Face embeddings, landmarks, object classification, OCR, similarity search',
+    examples:
+      'Face embeddings, landmarks, promptable object detection and segmentation, instance masks, OCR, similarity search',
     tools: ['Obsedian Prism', 'Photo analysis', 'Video processing', 'Live identification'],
     toolIds: ['prism', 'face-analyze', 'video', 'live-id'],
   },

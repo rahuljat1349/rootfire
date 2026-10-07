@@ -20,10 +20,14 @@ export const FEATURE_EXPLAINERS = {
     steps: ['Upload an unknown face', 'Prism searches your database', 'Best matches appear ranked by confidence'],
   },
   live: {
-    steps: ['Connect any camera or stream', 'Faces and objects detected live', 'Matches trigger instant alerts'],
+    steps: ['Connect any camera or stream', 'Prompt or click to segment objects live', 'Matches and tracks trigger instant alerts'],
   },
   analyze: {
-    steps: ['Upload an evidence image', 'EXIF, PRNU, and artifacts extracted', 'Results feed searches and Molecules'],
+    steps: [
+      'Upload an evidence image',
+      'EXIF, PRNU, artifacts, and promptable object masks extracted',
+      'Results feed searches, Motion, and Molecules',
+    ],
   },
   fingerprint: {
     steps: ['Scan or upload a print', 'Unique points are captured', 'Print is matched to enrolled subjects'],
@@ -32,10 +36,10 @@ export const FEATURE_EXPLAINERS = {
     steps: ['Capture an iris scan', 'Verify or search with Iris', 'Get match scores or ranked candidates'],
   },
   audio: {
-    steps: ['Upload a recording', 'Speakers separated and grouped', 'Matches and relations via Molecules'],
+    steps: ['Upload a recording', 'Diarize speakers or isolate sounds by prompt', 'Matches and relations via Molecules'],
   },
   video: {
-    steps: ['Upload video footage', 'Faces and objects detected', 'Timeline with database matches'],
+    steps: ['Upload video footage', 'Prompt, click, or box-select objects to segment', 'Track instances on a searchable timeline'],
   },
   batch: {
     steps: ['Upload mixed evidence types', 'Each file routed automatically', 'Review triage summary'],
@@ -69,6 +73,10 @@ export const FEATURE_EXPLAINERS = {
     steps: ['Ingest transactions and KYC records', 'AI scores patterns and identity risk', 'Review fraud alerts with cited evidence'],
   },
   spectra: {
-    steps: ['Ingest image, video, or audio evidence', 'Engines extract artifacts and biometrics', 'Results feed Molecules and Lens'],
+    steps: [
+      'Ingest image, video, or audio evidence',
+      'Extract artifacts, segment objects and sounds by prompt',
+      'Results feed Molecules and Lens',
+    ],
   },
 }

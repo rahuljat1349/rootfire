@@ -131,52 +131,52 @@ export const FEATURE_DETAILS = {
     ],
   },
   'live-id': {
-    tagline: 'Any camera. Every object. Real-time matching.',
+    tagline: 'Prompt or click — segment and track live.',
     overview:
-      'Live identification connects to any CCTV, IP camera, checkpoint feed, or remote stream. The platform detects faces, objects, and entities in every frame — matching against your enrolled database in real time.',
+      'Live identification connects to any CCTV, IP camera, checkpoint feed, or remote stream. Prompt open-vocabulary concepts, click or box-select objects on screen to segment and track them, and match faces against your enrolled database — all in real time.',
     steps: [
       {
         title: 'Connect any camera or stream',
         body: 'Field laptop webcams, checkpoint cameras, RTSP feeds, and remote CCTV — all configured on your local network.',
       },
       {
-        title: 'Detect everything in frame',
-        body: 'Faces, objects, plates, and entities are detected continuously — not just people.',
+        title: 'Prompt, click, or watchlist',
+        body: 'Type a concept ("red backpack"), click an object to segment it, or load concept watchlists. Live returns masks and stable tracks for every match.',
       },
       {
         title: 'Alerts on a match',
-        body: 'When confidence exceeds your threshold, subject details and object matches appear on screen immediately.',
+        body: 'When confidence exceeds your threshold, subject details, segmented objects, and track IDs appear on screen immediately.',
       },
     ],
     benefits: [
-      'Multi-object live matching — not face-only',
-      'Works with any standard camera or stream',
-      'No cloud latency — matching happens locally',
+      'Promptable live segmentation — not face-only detection',
+      'Click-to-select objects and follow them across cameras',
+      'No cloud latency — matching and segmentation happen locally',
     ],
     idealFor: ['Border and checkpoint screening', 'Event security monitoring', 'Multi-entity surveillance'],
   },
   'face-analyze': {
-    tagline: 'Every image artifact — from EXIF to PRNU.',
+    tagline: 'Every image artifact — from EXIF to promptable masks.',
     overview:
-      'Photo analysis extracts the full artifact stack from evidence images — EXIF metadata, GPS coordinates, camera and lens info, PRNU sensor fingerprints, editing software traces, compression artifacts, OCR text, face embeddings, and deepfake indicators.',
+      'Photo analysis extracts the full artifact stack from evidence images — EXIF metadata, GPS coordinates, camera and lens info, PRNU sensor fingerprints, editing software traces, compression artifacts, OCR text, face embeddings, promptable object segmentation, and deepfake indicators.',
     steps: [
       {
         title: 'Upload an evidence image',
         body: 'Surveillance stills, social media photos, witness images, or camera originals — any format.',
       },
       {
-        title: 'Artifacts are extracted',
-        body: 'EXIF, GPS, PRNU, sensor fingerprint, editing traces, demographics, and OCR run in one pass.',
+        title: 'Artifacts and objects extracted',
+        body: 'EXIF, GPS, PRNU, sensor fingerprint, editing traces, OCR, and promptable object masks — by text concept, click, or box — run in one pass.',
       },
       {
         title: 'Use results across the OS',
-        body: 'Link camera fingerprints across cases, narrow searches, and enrich Molecules with image provenance.',
+        body: 'Link camera fingerprints across cases, push segmented objects into Motion or Live, and enrich Molecules with image provenance.',
       },
     ],
     benefits: [
       'PRNU and sensor fingerprinting for camera attribution',
-      'Deepfake and editing detection signals',
-      'Feeds Prism, Lens, and Molecules',
+      'Promptable object detection and instance segmentation on stills',
+      'Feeds Prism, Motion, Lens, and Molecules',
     ],
     idealFor: ['Camera attribution', 'Image authenticity verification', 'Unknown subject profiling'],
   },
@@ -231,52 +231,52 @@ export const FEATURE_DETAILS = {
     idealFor: ['Border and immigration screening', 'High-security facility access', 'Multi-modal identity confirmation'],
   },
   voice: {
-    tagline: 'Multiple speakers. Grouped. Connected through Molecules.',
+    tagline: 'Diarize speakers. Isolate any sound by prompt.',
     overview:
-      'Voice analysis diarizes multiple speakers in a single recording, groups voice clusters, matches speakers to enrolled subjects, and surfaces communication relationships through Obsedian Molecules.',
+      'Voice analysis diarizes multiple speakers, then goes further with promptable audio segmentation — isolate a specific speaker, a gunshot, a vehicle, or any sound from complex mixtures using text, visual, or time-span prompts. Match voices to enrolled subjects and feed relationships into Molecules.',
     steps: [
       {
         title: 'Upload audio evidence',
-        body: 'Wiretaps, interviews, surveillance audio — WAV, MP3, and common formats supported.',
+        body: 'Wiretaps, interviews, surveillance audio — WAV, MP3, and common formats supported. Pair with video when visual prompts are useful.',
       },
       {
-        title: 'Speakers are separated and grouped',
-        body: 'Diarization segments who spoke when. Voice embeddings cluster unknown speakers for review.',
+        title: 'Diarize and isolate',
+        body: 'Diarization segments who spoke when. Promptable audio segmentation isolates target sounds — by phrase ("car honking"), by linked video mask, or by time span.',
       },
       {
         title: 'Match and correlate',
-        body: 'Speakers matched to enrolled subjects. Communication patterns link into Molecules.',
+        body: 'Speakers matched to enrolled subjects. Isolated events and communication patterns link into Molecules.',
       },
     ],
     benefits: [
       'Multi-speaker diarization in one recording',
-      'Speaker grouping for unknown voices',
+      'Promptable audio segmentation for any sound event',
       'Communication graphs via Molecules',
     ],
-    idealFor: ['Wiretap analysis', 'Multi-speaker interview review', 'Communication network mapping'],
+    idealFor: ['Wiretap analysis', 'Multi-speaker interview review', 'Sound event isolation'],
   },
   video: {
-    tagline: 'Every face and object — matched against your database.',
+    tagline: 'Prompt, click, or box — detect, segment, and track.',
     overview:
-      'Video processing ingests surveillance, bodycam, or interview footage and scans every frame for faces and objects. Detections are matched against your enrolled database and appear on a searchable timeline.',
+      'Video processing ingests surveillance, bodycam, or interview footage. Prompt open-vocabulary concepts, click or draw a box on any object, and Obsedian Motion detects, segments, and tracks every matching instance with stable IDs across frames — then matches faces against your database on a searchable timeline.',
     steps: [
       {
         title: 'Upload video files',
         body: 'MP4, AVI, and common formats. Processing runs as a background job on your local worker.',
       },
       {
-        title: 'Faces and objects detected',
-        body: 'Every frame is scanned for people, vehicles, objects, and entities — each timestamped.',
+        title: 'Prompt or select what to find',
+        body: 'Type a concept ("yellow school bus"), click points, or draw a box. Motion returns instance masks and tracks every match through the clip.',
       },
       {
         title: 'Review matches on the timeline',
-        body: 'Jump to exact moments. Match faces and objects to enrolled subjects and known entities.',
+        body: 'Jump to exact moments. Inspect masks, refine with positive or negative clicks, and match faces to enrolled subjects.',
       },
     ],
     benefits: [
-      'Object detection plus face recognition',
-      'Database matching for people and entities',
-      'Timestamped timeline for case reports',
+      'Promptable detection and instance segmentation — not fixed-class only',
+      'Click and box selection with interactive mask refinement',
+      'Stable object IDs across frames for case timelines',
     ],
     idealFor: ['CCTV review', 'Bodycam footage analysis', 'Event reconstruction'],
   },
@@ -508,15 +508,15 @@ export const FEATURE_DETAILS = {
   spectra: {
     tagline: 'Unified media intelligence — image, video, audio, and fingerprints.',
     overview:
-      'Obsedian Spectra is the media analysis engine for the forensic OS. Image artifacts from EXIF to PRNU, video and CCTV analytics with object tracking, multi-speaker voice diarization, fingerprint matching, and batch media processing — all feeding Obsedian Molecules and Lens.',
+      'Obsedian Spectra is the media analysis engine for the forensic OS. Image artifacts from EXIF to PRNU, promptable object detection and segmentation, video and CCTV analytics with instance tracking, multi-speaker diarization plus promptable audio isolation, fingerprint matching, and batch media processing — all feeding Obsedian Molecules and Lens.',
     steps: [
       {
         title: 'Ingest any media evidence',
         body: 'Images, surveillance video, wiretap audio, latent prints, and mixed media batches — one engine, one subject record.',
       },
       {
-        title: 'Extract artifacts and biometrics',
-        body: 'EXIF, GPS, PRNU, deepfake signals, face and object tracks, speaker clusters, and ridge patterns — in parallel.',
+        title: 'Extract, segment, and biometrics',
+        body: 'EXIF, GPS, PRNU, deepfake signals, promptable masks and object tracks, speaker clusters, isolated sound events, and ridge patterns — in parallel.',
       },
       {
         title: 'Correlate across the OS',
@@ -525,7 +525,7 @@ export const FEATURE_DETAILS = {
     ],
     benefits: [
       'Image, video, audio, and fingerprint — not four separate vendors',
-      'CCTV analytics and multi-camera tracking built in',
+      'Promptable segmentation across stills, video, and audio',
       'Every media artifact feeds Molecules and Lens',
     ],
     idealFor: ['Surveillance and CCTV review', 'Wiretap and interview audio', 'Camera attribution and image authenticity'],
